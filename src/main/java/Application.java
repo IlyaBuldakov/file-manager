@@ -1,13 +1,17 @@
 package main.java;
 
-import main.java.services.SizeHandler;
+import main.java.controllers.InputController;
 
-import java.nio.file.Path;
+import java.io.IOException;
 
 public class Application {
 
     public static void main(String[] args) {
-        SizeHandler sizeHandler = new SizeHandler();
-        sizeHandler.activate(Path.of("C:\\Test").toFile());
+        InputController inputController = new InputController();
+        try {
+            inputController.start();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
