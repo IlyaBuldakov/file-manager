@@ -1,6 +1,10 @@
 package main.java.models;
 
-import java.nio.file.attribute.BasicFileAttributes;
+import main.java.services.SizeHandler;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 
 public class Information {
 
@@ -15,14 +19,9 @@ public class Information {
     Type type;
 
     /**
-     * Object size.
+     * Size of object.
      */
-    long size;
-
-    /** Read/write attributes.
-     *
-     */
-    BasicFileAttributes attributes;
+    float size;
 
     /**
      * Count of objects.
@@ -32,14 +31,56 @@ public class Information {
     /**
      * Total size of objects in dir.
      */
-    long totalSize;
+    float totalSize;
 
-    public Information(String objName, Type type, long size, BasicFileAttributes attributes, int count, long totalSize) {
-        this.objName = objName;
-        this.type = type;
-        this.size = size;
-        this.attributes = attributes;
-        this.count = count;
-        this.totalSize = totalSize;
+    public Information(File file) {
+        this.objName = file.getName();
+        this.type = Type.getType();
+        this.size = calculateSize(file);
+        this.count = calculateCount(file);
+    }
+
+    private float calculateSize(File file) {
+        try {
+            if (file.isDirectory()) {
+                return SizeHandler.activate(file);
+            }
+            return Files.size(file.toPath());
+        } catch (IOException exception) {
+            System.err.println("Ошибка файла.");
+        }
+        return 0;
+    }
+
+    private int calculateCount(File file) {
+        if (file.isDirectory()) {
+            File[] files = file.listFiles();
+            if (files != null) {
+                return files.length;
+            } else {
+                return 0;
+            }
+        }
+        return 1;
+    }
+
+    public String getObjName() {
+        return objName;
+    }
+
+    public Type getType() {
+        return type;
+    }
+
+    public float getSize() {
+        return size;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public float getTotalSize() {
+        return totalSize;
     }
 }
