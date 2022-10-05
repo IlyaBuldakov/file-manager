@@ -11,11 +11,10 @@ import java.util.concurrent.RecursiveTask;
  */
 public class SizeHandler {
 
-    ForkJoinPool forkJoinPool = new ForkJoinPool();
+    private static final ForkJoinPool forkJoinPool = new ForkJoinPool();
 
-    public void activate(File destination) {
-        float result = forkJoinPool.invoke(new SizeHandlerTask(destination));
-        System.out.println(SizeConverter.convert(result));
+    public static float activate(File destination) {
+        return forkJoinPool.invoke(new SizeHandlerTask(destination));
     }
 
     static class SizeHandlerTask extends RecursiveTask<Float> {
