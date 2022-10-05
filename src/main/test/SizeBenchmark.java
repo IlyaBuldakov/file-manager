@@ -28,10 +28,9 @@ public class SizeBenchmark {
     }
 
     public static void forkJoinWay() {
-        SizeHandler sizeHandler = new SizeHandler();
         System.out.println("=== Начало ===");
         long start = System.currentTimeMillis();
-        sizeHandler.activate(Path.of("C:\\Program Files (x86)").toFile());
+        SizeHandler.activate(Path.of("C:\\Program Files (x86)").toFile());
         long finish = System.currentTimeMillis();
         System.out.println("=== " + (finish - start) + " мс. ===");
     }
