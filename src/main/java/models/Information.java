@@ -1,12 +1,15 @@
 package main.java.models;
 
 import main.java.services.SizeHandler;
+import main.java.services.ThreadPoolSizeHandler;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 
 public class Information {
+
+    private static SizeHandler sizeHandler = new ThreadPoolSizeHandler();
 
     /**
      * Object name.
@@ -40,10 +43,14 @@ public class Information {
         this.count = calculateCount(file);
     }
 
+    public static void setSizeHandler(SizeHandler sizeHandler) {
+        Information.sizeHandler = sizeHandler;
+    }
+
     private float calculateSize(File file) {
         try {
             if (file.isDirectory()) {
-                return SizeHandler.activate(file);
+                return sizeHandler.activate(file);
             }
             return Files.size(file.toPath());
         } catch (IOException exception) {
