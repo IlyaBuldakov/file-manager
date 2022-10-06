@@ -7,6 +7,9 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 
+/**
+ * Base representation of object (file, dir).
+ */
 public class Information {
 
     private static SizeHandler sizeHandler = new ThreadPoolSizeHandler();
@@ -43,6 +46,11 @@ public class Information {
         this.count = calculateCount(file);
     }
 
+    /**
+     * Setter for size handler implementation.
+     *
+     * @param sizeHandler Size handler implementation.
+     */
     public static void setSizeHandler(SizeHandler sizeHandler) {
         Information.sizeHandler = sizeHandler;
     }

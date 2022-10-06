@@ -6,6 +6,9 @@ import java.nio.file.Files;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveTask;
 
+/**
+ * Size handler implementation which uses Fork-Join pool.
+ */
 public class ForkJoinSizeHandler implements SizeHandler {
 
     private static final ForkJoinPool forkJoinPool = new ForkJoinPool();
@@ -14,6 +17,9 @@ public class ForkJoinSizeHandler implements SizeHandler {
         return forkJoinPool.invoke(new SizeHandlerTask(destination));
     }
 
+    /**
+     * Recursive task for fork-join pool.
+     */
     static class SizeHandlerTask extends RecursiveTask<Float> {
 
         private final File destination;

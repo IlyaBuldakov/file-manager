@@ -7,8 +7,15 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+/**
+ * Controller interacting with the user.
+ */
 public class InputController {
 
+    /**
+     * The greeting method that is called when the
+     * program starts before interacting with the user.
+     */
     private void greetingPage() {
         System.out.println();
         System.out.println("***************************************");
@@ -19,6 +26,11 @@ public class InputController {
         fileTree.displayView();
     }
 
+    /**
+     * Activating the InputController.
+     *
+     * @throws IOException Exception.
+     */
     public void start() throws IOException {
         greetingPage();
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));

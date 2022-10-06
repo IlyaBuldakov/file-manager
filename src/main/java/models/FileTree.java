@@ -7,6 +7,9 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Model of file tree.
+ */
 public class FileTree implements Viewable {
 
     List<Information> tree;
