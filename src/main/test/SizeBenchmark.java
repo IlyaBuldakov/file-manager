@@ -1,11 +1,11 @@
 package main.test;
 
+import main.java.services.ForkJoinSizeHandler;
 import main.java.services.SizeConverter;
 import main.java.services.SizeHandler;
+import main.java.services.SyncSizeHandler;
+import main.java.services.ThreadPoolSizeHandler;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
 
 /**
@@ -15,42 +15,39 @@ import java.nio.file.Path;
  */
 public class SizeBenchmark {
 
-    public static void main(String[] args) {
-        // async way
-        forkJoinWay();
+    private static final String TEST_DIR = "C:\\Program Files (x86)";
 
-        // sync way
-        System.out.println("=== Начало ===");
-        long start = System.currentTimeMillis();
-        System.out.println(SizeConverter.convert(syncWay(Path.of("C:\\Program Files (x86)").toFile())));
-        long finish = System.currentTimeMillis();
-        System.out.println("=== " + (finish - start) + " мс. ===");
+    static SizeHandler fJHandler = new ForkJoinSizeHandler();
+    static SizeHandler threadPoolHandler = new ThreadPoolSizeHandler();
+    static SizeHandler syncHandler = new SyncSizeHandler();
+
+    public static void main(String[] args) {
+        forkJoinWay();
+        threadPoolWay();
+        syncWay();
     }
 
     public static void forkJoinWay() {
-        System.out.println("=== Начало ===");
+        System.out.println("=== Начало F/J ===");
         long start = System.currentTimeMillis();
-        SizeHandler.activate(Path.of("C:\\Program Files (x86)").toFile());
+        System.out.println(SizeConverter.convert(fJHandler.activate(Path.of(TEST_DIR).toFile())));
         long finish = System.currentTimeMillis();
         System.out.println("=== " + (finish - start) + " мс. ===");
     }
 
-    public static float syncWay(File destination) {
-        float sizeInCurrentDir = 0;
-        try {
-            File[] files = destination.listFiles();
-            if (files != null) {
-                for (File file : files) {
-                    if (file.isFile()) {
-                        sizeInCurrentDir += Files.size(file.toPath());
-                    } else {
-                        sizeInCurrentDir += syncWay(file);
-                    }
-                }
-            }
-        } catch (IOException exception) {
-            System.err.println("Ошибка");
-        }
-        return sizeInCurrentDir;
+    public static void threadPoolWay() {
+        System.out.println("=== Начало thread pool ===");
+        long start = System.currentTimeMillis();
+        System.out.println(SizeConverter.convert(threadPoolHandler.activate(Path.of(TEST_DIR).toFile())));
+        long finish = System.currentTimeMillis();
+        System.out.println("=== " + (finish - start) + " мс. ===");
+    }
+
+    public static void syncWay() {
+        System.out.println("=== Начало sync ===");
+        long start = System.currentTimeMillis();
+        System.out.println(SizeConverter.convert(syncHandler.activate(Path.of(TEST_DIR).toFile())));
+        long finish = System.currentTimeMillis();
+        System.out.println("=== " + (finish - start) + " мс. ===");
     }
 }
