@@ -16,7 +16,8 @@ import java.util.concurrent.ExecutionException;
 public class FileTreeBuilder {
 
     public static FileTree build(String destination) {
-        File[] filesInDestDir = Path.of(destination).toFile().listFiles();
+        File fileDest = Path.of(destination).toFile();
+        File[] filesInDestDir = fileDest.listFiles();
         if (filesInDestDir != null) {
             CompletableFuture<List<Information>> cf = CompletableFuture.supplyAsync(() -> {
                 ArrayList<Information> infoList = new ArrayList<>();
@@ -30,12 +31,12 @@ public class FileTreeBuilder {
                 return infoList;
             });
             try {
-                return new FileTree(cf.get());
+                return new FileTree(cf.get(), fileDest.getName());
             } catch (InterruptedException | ExecutionException e) {
                 throw new RuntimeException(e);
             }
         }
-        return new FileTree();
+        return new FileTree(fileDest.getName());
     }
 
     public static void progressPercentage(int done, int total) {

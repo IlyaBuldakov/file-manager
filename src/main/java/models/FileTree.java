@@ -14,16 +14,20 @@ public class FileTree implements Viewable {
 
     List<Information> tree;
 
-    public FileTree(Collection<Information> info) {
+    String headName;
+
+    public FileTree(Collection<Information> info, String headName) {
         this.tree = new ArrayList<>();
+        this.headName = headName;
         this.tree.addAll(info);
     }
 
     /**
      * Creates empty file tree.
      */
-    public FileTree() {
+    public FileTree(String headName) {
         this.tree = Collections.emptyList();
+        this.headName = headName;
     }
 
     /**
@@ -32,6 +36,10 @@ public class FileTree implements Viewable {
      */
     public List<Information> getTree() {
         return this.tree;
+    }
+
+    public String getHeadName() {
+        return headName;
     }
 
     /**
