@@ -21,8 +21,8 @@ public class FileTreeView {
             sb.append(" | ");
             sb.append(new InformationDto(list.get(i)));
         }
-        return "=== File tree " + tree.getHeadName() + " === \n" +
-                sb + "\n" +
+        return "=== File tree " + tree.getHeadName() + " ===" +
+                "\n" + sb +
                 "=== File tree " + tree.getHeadName() + " ===";
     }
 
