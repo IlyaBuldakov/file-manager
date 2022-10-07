@@ -6,9 +6,6 @@ import main.java.models.Information;
 import java.io.File;
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
 
 /**
  * Utility file tree builder class.
@@ -19,22 +16,15 @@ public class FileTreeBuilder {
         File fileDest = Path.of(destination).toFile();
         File[] filesInDestDir = fileDest.listFiles();
         if (filesInDestDir != null) {
-            CompletableFuture<List<Information>> cf = CompletableFuture.supplyAsync(() -> {
-                ArrayList<Information> infoList = new ArrayList<>();
-                int progressCounter = 10;
-                for (File file : filesInDestDir) {
-                    Information info = new Information(file);
-                    infoList.add(info);
-                    progressPercentage(progressCounter, filesInDestDir.length * 10);
-                    progressCounter += 10;
-                }
-                return infoList;
-            });
-            try {
-                return new FileTree(cf.get(), fileDest.getName());
-            } catch (InterruptedException | ExecutionException e) {
-                throw new RuntimeException(e);
+            ArrayList<Information> infoList = new ArrayList<>();
+            int progressCounter = 10;
+            for (File file : filesInDestDir) {
+                Information info = new Information(file);
+                infoList.add(info);
+                progressPercentage(progressCounter, filesInDestDir.length * 10);
+                progressCounter += 10;
             }
+            return new FileTree(infoList, fileDest.getName());
         }
         return new FileTree(fileDest.getName());
     }
