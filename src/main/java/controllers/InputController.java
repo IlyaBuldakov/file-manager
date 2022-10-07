@@ -6,6 +6,7 @@ import main.java.services.FileTreeBuilder;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.concurrent.CompletableFuture;
 
 /**
  * Controller interacting with the user.
@@ -22,8 +23,11 @@ public class InputController {
         System.out.println("*** Welcome! Here is your home path ***");
         System.out.println("***************************************");
 
-        FileTree fileTree = FileTreeBuilder.build(System.getProperty("user.home"));
-        fileTree.displayView();
+        CompletableFuture<Void> greetingUserDig = CompletableFuture.supplyAsync(() -> {
+            FileTree fileTree = FileTreeBuilder.build(System.getProperty("user.home"));
+            fileTree.displayView();
+            return null;
+        });
     }
 
     /**
