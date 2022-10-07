@@ -21,11 +21,14 @@ public class ThreadPoolSizeHandler implements SizeHandler {
             File[] files = destination.listFiles();
             if (files != null) {
                 BlockingQueue<File> queue = new LinkedBlockingQueue<>(List.of(files));
-                while (queue.size() > 2) {
+                while (queue.size() > 1) {
                     Future<Float> fut1 = threadPool.submit(new SizeHandlerTask(queue.poll()));
                     Future<Float> fut2 = threadPool.submit(new SizeHandlerTask(queue.poll()));
                     sum += fut1.get();
                     sum += fut2.get();
+                }
+                if (queue.size() == 1) {
+                    sum += syncHandler.activate(queue.poll());
                 }
             }
             return sum;

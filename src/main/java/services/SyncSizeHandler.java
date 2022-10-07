@@ -4,11 +4,14 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 
-public class SyncSizeHandler implements SizeHandler{
+public class SyncSizeHandler implements SizeHandler {
     @Override
     public float activate(File destination) {
         float sizeInCurrentDir = 0;
         try {
+            if (destination.isFile()) {
+                sizeInCurrentDir += Files.size(destination.toPath());
+            }
             File[] files = destination.listFiles();
             if (files != null) {
                 for (File file : files) {
