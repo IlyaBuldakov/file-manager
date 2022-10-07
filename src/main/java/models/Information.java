@@ -6,6 +6,7 @@ import main.java.services.ThreadPoolSizeHandler;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 
 /**
  * Base representation of object (file, dir).
@@ -39,11 +40,14 @@ public class Information {
      */
     float totalSize;
 
+    Path path;
+
     public Information(File file) {
         this.objName = file.getName();
         this.type = Type.getType();
         this.size = calculateSize(file);
         this.count = calculateCount(file);
+        this.path = file.toPath();
     }
 
     /**
@@ -97,5 +101,9 @@ public class Information {
 
     public float getTotalSize() {
         return totalSize;
+    }
+
+    public Path getPath() {
+        return path;
     }
 }
