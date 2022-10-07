@@ -13,7 +13,7 @@ import java.util.concurrent.CompletableFuture;
  */
 public class InputController {
 
-    FileTree fileTree = FileTreeBuilder.build(System.getProperty("user.home"));
+    FileTree fileTree;
 
     /**
      * The greeting method that is called when the
@@ -22,9 +22,15 @@ public class InputController {
     private void greetingPage() {
         CompletableFuture<Void> greetingUserDig = CompletableFuture.supplyAsync(() -> {
             System.out.println();
-            System.out.println("***************************************");
-            System.out.println("*** Welcome! Here is your home path ***");
-            System.out.println("***************************************");
+            System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
+            System.out.println("**** Welcome! Here is your home path *********");
+            System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
+            System.out.println("***** You can navigate at your file **********");
+            System.out.println("***** system using absolute path *************");
+            System.out.println("***** or numbers in directory list. **********");
+            System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
+            System.out.println();
+            fileTree = FileTreeBuilder.build(System.getProperty("user.home"));
             fileTree.displayView();
             return null;
         });

@@ -48,6 +48,7 @@ public class Information {
         this.size = calculateSize(file);
         this.count = calculateCount(file);
         this.path = file.toPath();
+        this.totalSize = size;
     }
 
     /**
