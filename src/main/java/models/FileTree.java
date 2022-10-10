@@ -2,6 +2,7 @@ package main.java.models;
 
 import main.java.views.FileTreeView;
 
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -14,11 +15,14 @@ public class FileTree implements Viewable {
 
     List<Information> tree;
 
+    Path treePath;
+
     String headName;
 
-    public FileTree(Collection<Information> info, String headName) {
+    public FileTree(Collection<Information> info, Path treePath, String headName) {
         this.tree = new ArrayList<>();
         this.headName = headName;
+        this.treePath = treePath;
         this.tree.addAll(info);
     }
 
@@ -40,6 +44,10 @@ public class FileTree implements Viewable {
 
     public String getHeadName() {
         return headName;
+    }
+
+    public Path getTreePath() {
+        return treePath;
     }
 
     /**

@@ -13,20 +13,24 @@ import java.util.ArrayList;
 public class FileTreeBuilder {
 
     public static FileTree build(String destination) {
-        File fileDest = Path.of(destination).toFile();
-        File[] filesInDestDir = fileDest.listFiles();
-        if (filesInDestDir != null) {
-            ArrayList<Information> infoList = new ArrayList<>();
-            int progressCounter = 10;
-            for (File file : filesInDestDir) {
-                Information info = new Information(file);
-                infoList.add(info);
-                progressPercentage(progressCounter, filesInDestDir.length * 10);
-                progressCounter += 10;
+        Path pathDest = Path.of(destination);
+        File fileDest = pathDest.toFile();
+        if (fileDest.exists()) {
+            File[] filesInDestDir = fileDest.listFiles();
+            if (filesInDestDir != null) {
+                ArrayList<Information> infoList = new ArrayList<>();
+                int progressCounter = 10;
+                for (File file : filesInDestDir) {
+                    Information info = new Information(file);
+                    infoList.add(info);
+                    progressPercentage(progressCounter, filesInDestDir.length * 10);
+                    progressCounter += 10;
+                }
+                return new FileTree(infoList, pathDest, fileDest.getName());
             }
-            return new FileTree(infoList, fileDest.getName());
+            return new FileTree(fileDest.getName());
         }
-        return new FileTree(fileDest.getName());
+        return build(System.getProperty("user.home"));
     }
 
     public static void progressPercentage(int done, int total) {
