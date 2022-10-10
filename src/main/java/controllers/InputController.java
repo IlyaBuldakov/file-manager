@@ -52,24 +52,24 @@ public class InputController {
             if (input.equalsIgnoreCase("exit")) {
                 break;
             }
-            if (input.equalsIgnoreCase(MenuButton.B.name())) {
-                fileTree = MenuController.handleMenu(fileTree, MenuButton.B);
-                continue;
-            }
-            FileTree localTree;
             try {
-                Information fileInfo = fileTree.getTree()
-                        .get(Integer.parseInt(input) - 1);
-                if (fileInfo.getType().equals(Type.DIR)) {
-                    localTree = FileTreeBuilder.build(fileInfo.getPath().toString());
+                fileTree = MenuController.handleMenu(fileTree, MenuButton.valueOf(input.toUpperCase()));
+            } catch (IllegalArgumentException exception) {
+                FileTree localTree;
+                try {
+                    Information fileInfo = fileTree.getTree()
+                            .get(Integer.parseInt(input) - 1);
+                    if (fileInfo.getType().equals(Type.DIR)) {
+                        localTree = FileTreeBuilder.build(fileInfo.getPath().toString());
+                        fileTree = localTree;
+                    } else {
+                        Desktop desktop = Desktop.getDesktop();
+                        desktop.open(fileInfo.getPath().toFile());
+                    }
+                } catch (NumberFormatException ex) {
+                    localTree = FileTreeBuilder.build(input);
                     fileTree = localTree;
-                } else {
-                    Desktop desktop = Desktop.getDesktop();
-                    desktop.open(fileInfo.getPath().toFile());
                 }
-            } catch (NumberFormatException exception) {
-                localTree = FileTreeBuilder.build(input);
-                fileTree = localTree;
             }
         }
     }
