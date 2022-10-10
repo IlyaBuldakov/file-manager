@@ -1,8 +1,12 @@
 package main.java.controllers;
 
 import main.java.models.FileTree;
+import main.java.models.Information;
+import main.java.models.MenuButton;
+import main.java.models.Type;
 import main.java.services.FileTreeBuilder;
 
+import java.awt.Desktop;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -50,14 +54,20 @@ public class InputController {
                 break;
             }
             try {
-                FileTree localTree = FileTreeBuilder
-                        .build(fileTree
-                                .getTree().get(Integer.parseInt(input) - 1).getPath().toString());
-                localTree.displayView();
+                Information fileInfo = fileTree.getTree()
+                        .get(Integer.parseInt(input) - 1);
+                if (fileInfo.getType().equals(Type.DIR)) {
+                    localTree = FileTreeBuilder.build(fileInfo.getPath().toString());
+                    localTree.displayView();
+                    fileTree = localTree;
+                } else {
+                    Desktop desktop = Desktop.getDesktop();
+                    desktop.open(fileInfo.getPath().toFile());
+                }
             } catch (NumberFormatException exception) {
-                FileTree localTree = FileTreeBuilder
-                        .build(input);
+                localTree = FileTreeBuilder.build(input);
                 localTree.displayView();
+                fileTree = localTree;
             }
         }
     }
