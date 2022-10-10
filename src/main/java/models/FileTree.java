@@ -1,7 +1,5 @@
 package main.java.models;
 
-import main.java.views.FileTreeView;
-
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -11,7 +9,7 @@ import java.util.List;
 /**
  * Model of file tree.
  */
-public class FileTree implements Viewable {
+public class FileTree {
 
     List<Information> tree;
 
@@ -48,13 +46,5 @@ public class FileTree implements Viewable {
 
     public Path getTreePath() {
         return treePath;
-    }
-
-    /**
-     * Method that allows display view.
-     */
-    @Override
-    public void displayView() {
-        FileTreeView view = new FileTreeView(this);
     }
 }

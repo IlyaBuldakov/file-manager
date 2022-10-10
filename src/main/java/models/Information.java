@@ -1,5 +1,6 @@
 package main.java.models;
 
+import main.java.services.SizeConverter;
 import main.java.services.SizeHandler;
 import main.java.services.ThreadPoolSizeHandler;
 
@@ -45,10 +46,10 @@ public class Information {
     public Information(File file) {
         this.objName = file.getName();
         this.type = Type.getType(file);
-        this.size = calculateSize(file);
         this.count = calculateCount(file);
         this.path = file.toPath();
         this.totalSize = size;
+        print(file);
     }
 
     /**
@@ -106,5 +107,15 @@ public class Information {
 
     public Path getPath() {
         return path;
+    }
+
+    public void print(File file) {
+        String firstPart = "Name: " + objName + " | Type: " + type + " | Size: ";
+        String secondPart = " | Count: " + count;
+        String sb = firstPart +
+                size +
+                secondPart;
+        System.out.print(sb);
+        System.out.println("\r" + firstPart + SizeConverter.convert(calculateSize(file)) + secondPart);
     }
 }

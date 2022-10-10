@@ -52,8 +52,9 @@ public class FileTreeBuilder {
                 bar.append(iconRemain);
             }
         }
-        System.out.print("\r" + bar + " " + donePercents + "%");
+        System.out.print("\r" + bar + " " + donePercents + "%" + " [PROCESSING] ");
         if (done == total) {
+            System.out.print("\r" + bar + " " + donePercents + "%");
             System.out.print("\n");
         }
     }

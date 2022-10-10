@@ -35,7 +35,6 @@ public class InputController {
             System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
             System.out.println();
             fileTree = FileTreeBuilder.build(System.getProperty("user.home"));
-            fileTree.displayView();
             return null;
         });
     }
@@ -63,7 +62,6 @@ public class InputController {
                         .get(Integer.parseInt(input) - 1);
                 if (fileInfo.getType().equals(Type.DIR)) {
                     localTree = FileTreeBuilder.build(fileInfo.getPath().toString());
-                    localTree.displayView();
                     fileTree = localTree;
                 } else {
                     Desktop desktop = Desktop.getDesktop();
@@ -71,7 +69,6 @@ public class InputController {
                 }
             } catch (NumberFormatException exception) {
                 localTree = FileTreeBuilder.build(input);
-                localTree.displayView();
                 fileTree = localTree;
             }
         }

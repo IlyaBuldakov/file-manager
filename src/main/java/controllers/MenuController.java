@@ -15,9 +15,7 @@ public class MenuController {
     public static FileTree handleMenu(FileTree tree, MenuButton button) {
         Path parent = tree.getTreePath().getParent();
         if (button == MenuButton.B) {
-            FileTree fileTree = FileTreeBuilder.build(parent.toString());
-            fileTree.displayView();
-            return fileTree;
+            return FileTreeBuilder.build(parent.toString());
         }
         return tree;
     }
