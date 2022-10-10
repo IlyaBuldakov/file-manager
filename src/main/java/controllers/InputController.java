@@ -53,6 +53,11 @@ public class InputController {
             if (input.equalsIgnoreCase("exit")) {
                 break;
             }
+            if (input.equalsIgnoreCase(MenuButton.B.name())) {
+                fileTree = MenuController.handleMenu(fileTree, MenuButton.B);
+                continue;
+            }
+            FileTree localTree;
             try {
                 Information fileInfo = fileTree.getTree()
                         .get(Integer.parseInt(input) - 1);
