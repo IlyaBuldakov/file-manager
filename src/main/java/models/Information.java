@@ -44,7 +44,7 @@ public class Information {
 
     public Information(File file) {
         this.objName = file.getName();
-        this.type = Type.getType();
+        this.type = Type.getType(file);
         this.size = calculateSize(file);
         this.count = calculateCount(file);
         this.path = file.toPath();
