@@ -16,6 +16,8 @@ public class Information {
 
     private static SizeHandler sizeHandler = new ThreadPoolSizeHandler();
 
+    public static final String WHITE_BRIGHT = "\033[0;97m";
+
     /**
      * Object name.
      */
@@ -43,13 +45,13 @@ public class Information {
 
     Path path;
 
-    public Information(File file) {
+    public Information(File file, int number) {
         this.objName = file.getName();
         this.type = Type.getType(file);
         this.count = calculateCount(file);
         this.path = file.toPath();
         this.totalSize = size;
-        print(file);
+        print(file, number);
     }
 
     /**
@@ -109,13 +111,13 @@ public class Information {
         return path;
     }
 
-    public void print(File file) {
-        String firstPart = "Name: " + objName + " | Type: " + type + " | Size: ";
+    public void print(File file, int number) {
+        String firstPart = number + " | " + "Name: " + objName + " | Type: " + type + " | Size: ";
         String secondPart = " | Count: " + count;
         String sb = firstPart +
                 size +
                 secondPart;
-        System.out.print(sb);
+        System.out.print(sb + WHITE_BRIGHT);
         System.out.println("\r" + firstPart + SizeConverter.convert(calculateSize(file)) + secondPart);
     }
 }
