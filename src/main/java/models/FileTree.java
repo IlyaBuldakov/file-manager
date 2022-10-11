@@ -1,9 +1,9 @@
 package main.java.models;
 
+import main.java.views.AfterFileTreeView;
+
 import java.nio.file.Path;
-import java.util.Collection;
 import java.util.Collections;
-import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -17,14 +17,13 @@ public class FileTree {
 
     String headName;
 
-    private static final String FILE_TREE_ENDING = "=== File tree %s === \n";
 
     public FileTree(List<Information> infoList, Path treePath, String headName) {
         this.tree = infoList;
         this.headName = headName;
         this.treePath = treePath;
         this.tree.addAll(infoList);
-        finishBuild();
+        AfterFileTreeView.finishBuild(headName);
     }
 
     /**
@@ -34,7 +33,7 @@ public class FileTree {
         this.tree = Collections.emptyList();
         this.treePath = treePath;
         this.headName = headName;
-        finishBuild();
+        AfterFileTreeView.finishBuild(headName);
     }
 
     /**
@@ -48,10 +47,5 @@ public class FileTree {
 
     public Path getTreePath() {
         return treePath;
-    }
-
-    public void finishBuild() {
-        System.out.printf(FILE_TREE_ENDING, headName);
-        System.out.println("[B] - back to parent directory.");
     }
 }
