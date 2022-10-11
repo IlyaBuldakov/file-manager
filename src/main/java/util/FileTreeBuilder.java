@@ -1,4 +1,4 @@
-package main.java.services;
+package main.java.util;
 
 import main.java.models.FileTree;
 import main.java.models.Information;

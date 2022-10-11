@@ -2,7 +2,7 @@ package main.java.controllers;
 
 import main.java.models.FileTree;
 import main.java.models.MenuButton;
-import main.java.services.FileTreeBuilder;
+import main.java.util.FileTreeBuilder;
 
 import java.nio.file.Path;
 

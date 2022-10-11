@@ -1,6 +1,6 @@
 package main.java.models;
 
-import main.java.services.Calculator;
+import main.java.util.Calculator;
 import main.java.views.InformationView;
 
 import java.io.File;

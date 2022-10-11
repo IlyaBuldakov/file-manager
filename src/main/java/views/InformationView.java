@@ -1,7 +1,7 @@
 package main.java.views;
 
 import main.java.models.Information;
-import main.java.services.Calculator;
+import main.java.util.Calculator;
 import main.java.services.SizeConverter;
 
 import java.io.File;
