@@ -1,9 +1,9 @@
 package main.java.models;
 
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -17,19 +17,24 @@ public class FileTree {
 
     String headName;
 
+    private static final String FILE_TREE_ENDING = "=== File tree %s === \n";
+
     public FileTree(Collection<Information> info, Path treePath, String headName) {
         this.tree = new ArrayList<>();
         this.headName = headName;
         this.treePath = treePath;
         this.tree.addAll(info);
+        finishBuild();
     }
 
     /**
      * Creates empty file tree.
      */
-    public FileTree(String headName) {
+    public FileTree(String headName, Path treePath) {
         this.tree = Collections.emptyList();
+        this.treePath = treePath;
         this.headName = headName;
+        finishBuild();
     }
 
     /**
@@ -40,11 +45,12 @@ public class FileTree {
         return this.tree;
     }
 
-    public String getHeadName() {
-        return headName;
-    }
-
     public Path getTreePath() {
         return treePath;
+    }
+
+    public void finishBuild() {
+        System.out.printf(FILE_TREE_ENDING, headName);
+        System.out.println("[B] - back to parent directory.");
     }
 }
