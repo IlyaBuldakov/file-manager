@@ -16,19 +16,19 @@ public class FileTreeBuilder {
         Path pathDest = Path.of(destination);
         File fileDest = pathDest.toFile();
         if (fileDest.exists()) {
-            File[] filesInDestDir = fileDest.listFiles();
-            if (filesInDestDir != null) {
+            File[] files = fileDest.listFiles();
+            if (files != null) {
                 ArrayList<Information> infoList = new ArrayList<>();
                 int progressCounter = 10;
-                for (File file : filesInDestDir) {
-                    Information info = new Information(file);
+                for (int i = 0; i < files.length; i++) {
+                    Information info = new Information(files[i], i + 1);
                     infoList.add(info);
-                    progressPercentage(progressCounter, filesInDestDir.length * 10);
+                    progressPercentage(progressCounter, files.length * 10);
                     progressCounter += 10;
                 }
                 return new FileTree(infoList, pathDest, fileDest.getName());
             }
-            return new FileTree(fileDest.getName());
+            return new FileTree(fileDest.getName(), pathDest);
         }
         return build(System.getProperty("user.home"));
     }
