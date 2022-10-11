@@ -24,8 +24,9 @@ public enum Type {
             String type = Files.probeContentType(file.toPath());
             return type == null ? DIR : Type.chooseType(type);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.err.println(Message.IO_ERROR.getText());
         }
+        return DIR;
     }
 
     private static Type chooseType(String type) {

@@ -39,6 +39,7 @@ public class FileTree {
 
     /**
      * Returns file tree.
+     *
      * @return File tree.
      */
     public List<Information> getTree() {

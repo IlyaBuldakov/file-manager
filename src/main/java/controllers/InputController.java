@@ -8,6 +8,7 @@ import main.java.services.FileTreeBuilder;
 
 import java.awt.Desktop;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.concurrent.CompletableFuture;
@@ -24,7 +25,7 @@ public class InputController {
      * program starts before interacting with the user.
      */
     private void greetingPage() {
-        CompletableFuture<Void> greetingUserDig = CompletableFuture.supplyAsync(() -> {
+        CompletableFuture.supplyAsync(() -> {
             System.out.println();
             System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
             System.out.println("**** Welcome! Here is your home path *********");
@@ -63,8 +64,7 @@ public class InputController {
                         localTree = FileTreeBuilder.build(fileInfo.getPath().toString());
                         fileTree = localTree;
                     } else {
-                        Desktop desktop = Desktop.getDesktop();
-                        desktop.open(fileInfo.getPath().toFile());
+                        openFile(fileInfo.getPath().toFile());
                     }
                 } catch (NumberFormatException ex) {
                     localTree = FileTreeBuilder.build(input);
@@ -72,5 +72,10 @@ public class InputController {
                 }
             }
         }
+    }
+
+    private void openFile(File file) throws IOException {
+        Desktop desktop = Desktop.getDesktop();
+        desktop.open(file);
     }
 }

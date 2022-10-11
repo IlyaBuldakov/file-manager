@@ -1,5 +1,7 @@
 package main.java.services;
 
+import main.java.models.Message;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -23,7 +25,7 @@ public class SyncSizeHandler implements SizeHandler {
                 }
             }
         } catch (IOException exception) {
-            System.err.println("Ошибка");
+            System.err.println(Message.IO_ERROR.getText());
         }
         return sizeInCurrentDir;
     }

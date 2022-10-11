@@ -1,6 +1,7 @@
 package main.java;
 
 import main.java.controllers.InputController;
+import main.java.models.Message;
 
 import java.io.IOException;
 
@@ -11,7 +12,7 @@ public class Application {
         try {
             inputController.start();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.err.println(Message.IO_ERROR.getText());
         }
     }
 }

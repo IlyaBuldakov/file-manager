@@ -1,9 +1,12 @@
 package main.java.services;
 
+import main.java.models.Message;
+
 import java.io.File;
 import java.util.List;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
@@ -32,8 +35,8 @@ public class ThreadPoolSizeHandler implements SizeHandler {
                 }
             }
             return sum;
-        } catch (Exception exception) {
-            System.err.println(exception.getMessage());
+        } catch (InterruptedException | ExecutionException e) {
+            System.err.println(Message.INTERNAL_ERROR.getText());
         }
         return 0;
     }

@@ -70,7 +70,7 @@ public class Information {
             }
             return Files.size(file.toPath());
         } catch (IOException exception) {
-            System.err.println("Ошибка файла.");
+            System.err.println(Message.IO_ERROR.getText());
         }
         return 0;
     }
