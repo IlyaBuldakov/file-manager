@@ -2,6 +2,7 @@ package main.java.services;
 
 import main.java.models.FileTree;
 import main.java.models.Information;
+import main.java.views.ProgressBarView;
 
 import java.io.File;
 import java.nio.file.Path;
@@ -39,41 +40,9 @@ public class FileTreeBuilder {
         for (int i = 0; i < files.length; i++) {
             Information info = new Information(files[i], i + 1);
             infoList.add(info);
-            progressPercentage(progressCounter, files.length * 10);
+            ProgressBarView.displayProgress(progressCounter, files.length * 10);
             progressCounter += 10;
         }
         return infoList;
-    }
-
-    /**
-     * Progress bar for building a file tree.
-     *
-     * @param done  Done part.
-     * @param total Total (aim).
-     */
-    public static void progressPercentage(int done, int total) {
-        int size = 10;
-        String iconDone = "█";
-        String iconRemain = "░";
-
-        if (done > total) {
-            throw new IllegalArgumentException();
-        }
-        int donePercents = (100 * done) / total;
-        int doneLength = size * donePercents / 100;
-
-        StringBuilder bar = new StringBuilder();
-        for (int i = 0; i < size; i++) {
-            if (i < doneLength) {
-                bar.append(iconDone);
-            } else {
-                bar.append(iconRemain);
-            }
-        }
-        System.out.print("\r" + bar + " " + donePercents + "%" + " [PROCESSING] ");
-        if (done == total) {
-            System.out.print("\r" + bar + " " + donePercents + "%");
-            System.out.print("\n");
-        }
     }
 }
