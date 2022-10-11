@@ -5,7 +5,7 @@ import main.java.models.Information;
 import main.java.models.MenuButton;
 import main.java.models.Type;
 import main.java.util.FileTreeBuilder;
-import main.java.util.FileUtil;
+import main.java.util.FileCalculator;
 import main.java.views.GreetingView;
 
 import java.io.BufferedReader;
@@ -48,7 +48,7 @@ public class InputController {
                         localTree = FileTreeBuilder.build(fileInfo.getPath().toString());
                         fileTree = localTree;
                     } else {
-                        FileUtil.openFile(fileInfo.getPath().toFile());
+                        FileCalculator.openFile(fileInfo.getPath().toFile());
                     }
                 } catch (NumberFormatException ex) {
                     localTree = FileTreeBuilder.build(input);

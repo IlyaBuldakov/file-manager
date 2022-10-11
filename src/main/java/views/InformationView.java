@@ -1,8 +1,8 @@
 package main.java.views;
 
 import main.java.models.Information;
-import main.java.util.Calculator;
 import main.java.services.SizeConverter;
+import main.java.util.FileCalculator;
 
 import java.io.File;
 
@@ -25,6 +25,6 @@ public class InformationView {
                 info.getSize() +
                 secondPart;
         System.out.print(sb + WHITE_BRIGHT);
-        System.out.println("\r" + firstPart + SizeConverter.convert(Calculator.calculateSize(file)) + secondPart);
+        System.out.println("\r" + firstPart + SizeConverter.convert(FileCalculator.calculateSize(file)) + secondPart);
     }
 }

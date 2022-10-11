@@ -1,6 +1,6 @@
 package main.java.models;
 
-import main.java.util.Calculator;
+import main.java.util.FileCalculator;
 import main.java.views.InformationView;
 
 import java.io.File;
@@ -41,7 +41,7 @@ public class Information {
     public Information(File file, int number) {
         this.objName = file.getName();
         this.type = Type.getType(file);
-        this.count = Calculator.calculateCount(file);
+        this.count = FileCalculator.calculateCount(file);
         this.path = file.toPath();
         this.totalSize = size;
         InformationView.print(this, file, number);

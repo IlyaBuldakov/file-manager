@@ -4,11 +4,15 @@ import main.java.models.Message;
 import main.java.services.SizeHandler;
 import main.java.services.ThreadPoolSizeHandler;
 
+import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 
-public class Calculator {
+/**
+ * Utility class for work with files.
+ */
+public class FileCalculator {
 
     private static SizeHandler sizeHandler = new ThreadPoolSizeHandler();
 
@@ -42,6 +46,11 @@ public class Calculator {
      * @param sizeHandler Size handler implementation.
      */
     public static void setSizeHandler(SizeHandler sizeHandler) {
-        Calculator.sizeHandler = sizeHandler;
+        FileCalculator.sizeHandler = sizeHandler;
+    }
+
+    public static void openFile(File file) throws IOException {
+        Desktop desktop = Desktop.getDesktop();
+        desktop.open(file);
     }
 }
