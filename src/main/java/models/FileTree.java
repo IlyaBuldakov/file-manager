@@ -19,11 +19,11 @@ public class FileTree {
 
     private static final String FILE_TREE_ENDING = "=== File tree %s === \n";
 
-    public FileTree(Collection<Information> info, Path treePath, String headName) {
-        this.tree = new LinkedList<>();
+    public FileTree(List<Information> infoList, Path treePath, String headName) {
+        this.tree = infoList;
         this.headName = headName;
         this.treePath = treePath;
-        this.tree.addAll(info);
+        this.tree.addAll(infoList);
         finishBuild();
     }
 

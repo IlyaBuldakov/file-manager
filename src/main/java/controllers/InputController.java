@@ -5,10 +5,9 @@ import main.java.models.Information;
 import main.java.models.MenuButton;
 import main.java.models.Type;
 import main.java.services.FileTreeBuilder;
+import main.java.util.FileUtil;
 
-import java.awt.Desktop;
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.concurrent.CompletableFuture;
@@ -64,7 +63,7 @@ public class InputController {
                         localTree = FileTreeBuilder.build(fileInfo.getPath().toString());
                         fileTree = localTree;
                     } else {
-                        openFile(fileInfo.getPath().toFile());
+                        FileUtil.openFile(fileInfo.getPath().toFile());
                     }
                 } catch (NumberFormatException ex) {
                     localTree = FileTreeBuilder.build(input);
@@ -72,10 +71,5 @@ public class InputController {
                 }
             }
         }
-    }
-
-    private void openFile(File file) throws IOException {
-        Desktop desktop = Desktop.getDesktop();
-        desktop.open(file);
     }
 }
