@@ -1,6 +1,6 @@
-package main.java.services;
+package services;
 
-import main.java.models.Measure;
+import models.Measure;
 public class SizeConverter {
 
     public static String convert(float input) {

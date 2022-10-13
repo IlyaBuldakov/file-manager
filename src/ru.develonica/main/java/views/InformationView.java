@@ -1,8 +1,8 @@
-package main.java.views;
+package views;
 
-import main.java.models.Information;
-import main.java.services.SizeConverter;
-import main.java.util.FileCalculator;
+import models.Information;
+import services.SizeConverter;
+import util.FileCalculator;
 
 import java.io.File;
 

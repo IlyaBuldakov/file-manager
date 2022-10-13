@@ -1,7 +1,7 @@
-package main.java.models;
+package models;
 
-import main.java.util.FileCalculator;
-import main.java.views.InformationView;
+import util.FileCalculator;
+import views.InformationView;
 
 import java.io.File;
 import java.nio.file.Path;

@@ -1,6 +1,6 @@
-package main.java.services;
+package services;
 
-import main.java.models.Message;
+import models.Message;
 
 import java.io.File;
     import java.io.IOException;

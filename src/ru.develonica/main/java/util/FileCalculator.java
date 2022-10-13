@@ -1,8 +1,8 @@
-package main.java.util;
+package util;
 
-import main.java.models.Message;
-import main.java.services.SizeHandler;
-import main.java.services.ThreadPoolSizeHandler;
+import models.Message;
+import services.SizeHandler;
+import services.ThreadPoolSizeHandler;
 
 import java.awt.Desktop;
 import java.io.File;

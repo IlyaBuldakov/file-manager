@@ -1,4 +1,4 @@
-package main.java.views;
+package views;
 
 public class ProgressBarView {
 

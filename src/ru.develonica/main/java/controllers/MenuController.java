@@ -1,8 +1,8 @@
-package main.java.controllers;
+package controllers;
 
-import main.java.models.FileTree;
-import main.java.models.MenuButton;
-import main.java.util.FileTreeBuilder;
+import models.FileTree;
+import models.MenuButton;
+import util.FileTreeBuilder;
 
 import java.nio.file.Path;
 

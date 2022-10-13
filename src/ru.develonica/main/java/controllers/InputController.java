@@ -1,12 +1,12 @@
-package main.java.controllers;
+package controllers;
 
-import main.java.models.FileTree;
-import main.java.models.Information;
-import main.java.models.MenuButton;
-import main.java.models.Type;
-import main.java.util.FileTreeBuilder;
-import main.java.util.FileCalculator;
-import main.java.views.GreetingView;
+import models.FileTree;
+import models.Information;
+import models.MenuButton;
+import models.Type;
+import util.FileTreeBuilder;
+import util.FileCalculator;
+import views.GreetingView;
 
 import java.io.BufferedReader;
 import java.io.IOException;

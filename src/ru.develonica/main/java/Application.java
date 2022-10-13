@@ -1,7 +1,5 @@
-package main.java;
-
-import main.java.controllers.InputController;
-import main.java.models.Message;
+import controllers.InputController;
+import models.Message;
 
 import java.io.IOException;
 

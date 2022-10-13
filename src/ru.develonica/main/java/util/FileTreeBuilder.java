@@ -1,8 +1,8 @@
-package main.java.util;
+package util;
 
-import main.java.models.FileTree;
-import main.java.models.Information;
-import main.java.views.ProgressBarView;
+import models.FileTree;
+import models.Information;
+import views.ProgressBarView;
 
 import java.io.File;
 import java.nio.file.Path;

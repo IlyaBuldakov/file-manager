@@ -1,4 +1,4 @@
-package main.java.models;
+package models;
 
 /**
  * Messages for user.
