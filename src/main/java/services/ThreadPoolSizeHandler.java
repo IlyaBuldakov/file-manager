@@ -3,55 +3,39 @@ package main.java.services;
 import main.java.models.Message;
 
 import java.io.File;
-import java.util.List;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.Callable;
+    import java.io.IOException;
+import java.nio.file.Files;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-import java.util.concurrent.LinkedBlockingQueue;
 
 public class ThreadPoolSizeHandler implements SizeHandler {
 
-    private static final ExecutorService threadPool = Executors.newFixedThreadPool(4);
+    private static final ExecutorService threadPool = Executors.newCachedThreadPool();
 
-    private static final SyncSizeHandler syncHandler = new SyncSizeHandler();
-
-    public float activate(File destination) {
-        try {
-            float sum = 0;
-            File[] files = destination.listFiles();
-            if (files != null) {
-                BlockingQueue<File> queue = new LinkedBlockingQueue<>(List.of(files));
-                while (queue.size() > 1) {
-                    Future<Float> fut1 = threadPool.submit(new SizeHandlerTask(queue.poll()));
-                    Future<Float> fut2 = threadPool.submit(new SizeHandlerTask(queue.poll()));
-                    sum += fut1.get();
-                    sum += fut2.get();
-                }
-                if (queue.size() == 1) {
-                    sum += syncHandler.activate(queue.poll());
+    public float activate(File destination) throws ExecutionException, InterruptedException, IOException {
+        File[] files = destination.listFiles();
+        float filesSize = 0f;
+        if (files != null) {
+            for (File file : files) {
+                if (file.isFile()) {
+                    filesSize += Files.size(file.toPath());
+                } else {
+                    filesSize += CompletableFuture.supplyAsync(() -> {
+                        try {
+                            return activate(file);
+                        } catch (ExecutionException | InterruptedException e) {
+                            System.err.println(Message.SIZE_HANDLER_ERROR);
+                            return 0f;
+                        } catch (IOException e) {
+                            System.err.println(Message.IO_ERROR);
+                            return 0f;
+                        }
+                    }, threadPool).get();
                 }
             }
-            return sum;
-        } catch (InterruptedException | ExecutionException e) {
-            System.err.println(Message.INTERNAL_ERROR.getText());
         }
-        return 0;
-    }
-
-    static class SizeHandlerTask implements Callable<Float> {
-
-        private final File destination;
-
-        public SizeHandlerTask(File destination) {
-            this.destination = destination;
-        }
-
-        @Override
-        public Float call() {
-            return syncHandler.activate(destination);
-        }
+        return filesSize;
     }
 }

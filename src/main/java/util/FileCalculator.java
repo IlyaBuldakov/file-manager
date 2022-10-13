@@ -8,6 +8,7 @@ import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.concurrent.ExecutionException;
 
 /**
  * Utility class for work with files.
@@ -19,7 +20,11 @@ public class FileCalculator {
     public static float calculateSize(File file) {
         try {
             if (file.isDirectory()) {
-                return sizeHandler.activate(file);
+                try {
+                    return sizeHandler.activate(file);
+                } catch (ExecutionException | InterruptedException e) {
+                    System.err.println(Message.INTERNAL_ERROR);
+                }
             }
             return Files.size(file.toPath());
         } catch (IOException exception) {
@@ -38,15 +43,6 @@ public class FileCalculator {
             }
         }
         return 1;
-    }
-
-    /**
-     * Setter for size handler implementation.
-     *
-     * @param sizeHandler Size handler implementation.
-     */
-    public static void setSizeHandler(SizeHandler sizeHandler) {
-        FileCalculator.sizeHandler = sizeHandler;
     }
 
     public static void openFile(File file) throws IOException {

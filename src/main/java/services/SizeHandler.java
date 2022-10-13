@@ -1,6 +1,8 @@
 package main.java.services;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.concurrent.ExecutionException;
 
 /**
  * Interface describing the component that is
@@ -14,5 +16,5 @@ public interface SizeHandler {
      *
      * @return Directory size.
      */
-    float activate(File destination);
+    float activate(File destination) throws IOException, ExecutionException, InterruptedException;
 }
