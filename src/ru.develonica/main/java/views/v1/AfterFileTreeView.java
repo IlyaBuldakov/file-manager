@@ -1,4 +1,4 @@
-package views;
+package views.v1;
 
 public class AfterFileTreeView {
 

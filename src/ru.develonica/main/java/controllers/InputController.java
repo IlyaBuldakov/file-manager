@@ -6,7 +6,7 @@ import models.MenuButton;
 import models.Type;
 import util.FileTreeBuilder;
 import util.FileCalculator;
-import views.GreetingView;
+import views.v1.GreetingView;
 
 import java.io.BufferedReader;
 import java.io.IOException;
