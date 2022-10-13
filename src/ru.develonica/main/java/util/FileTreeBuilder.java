@@ -1,5 +1,6 @@
 package util;
 
+import com.google.common.base.Stopwatch;
 import models.FileTree;
 import models.Information;
 import views.ProgressBarView;
@@ -8,6 +9,7 @@ import java.io.File;
 import java.nio.file.Path;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Utility file tree builder class.
@@ -15,16 +17,23 @@ import java.util.List;
 public class FileTreeBuilder {
 
     public static FileTree build(String destination) {
+        Stopwatch stopwatch = Stopwatch.createStarted();
         Path pathDest = Path.of(destination);
         File fileDest = pathDest.toFile();
         if (fileDest.exists()) {
             File[] files = fileDest.listFiles();
             if (files != null) {
                 List<Information> infoList = createInfoList(files);
+                stopwatch.stop();
+                System.out.println(stopwatch.elapsed(TimeUnit.MILLISECONDS) + " ms.");
                 return new FileTree(infoList, pathDest, fileDest.getName());
             }
+            stopwatch.stop();
+            System.out.println(stopwatch.elapsed(TimeUnit.MILLISECONDS) + " ms.");
             return new FileTree(fileDest.getName(), pathDest);
         }
+        stopwatch.stop();
+        System.out.println(stopwatch.elapsed(TimeUnit.MILLISECONDS) + " ms.");
         return build(System.getProperty("user.home"));
     }
 
