@@ -15,7 +15,7 @@ import java.util.concurrent.ExecutionException;
  */
 public class FileCalculator {
 
-    private static SizeHandler sizeHandler = new ThreadPoolSizeHandler();
+    private static final SizeHandler sizeHandler = new ThreadPoolSizeHandler();
 
     public static float calculateSize(File file) {
         try {
