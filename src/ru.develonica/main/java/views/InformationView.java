@@ -1,4 +1,4 @@
-package views.v1;
+package views;
 
 import models.Information;
 import services.SizeConverter;

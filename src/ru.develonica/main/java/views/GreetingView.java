@@ -1,4 +1,4 @@
-package views.v1;
+package views;
 
 import java.util.concurrent.CompletableFuture;
 

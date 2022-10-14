@@ -1,6 +1,6 @@
 package models;
 
-import views.v1.AfterFileTreeView;
+import views.AfterFileTreeView;
 
 import java.nio.file.Path;
 import java.util.Collections;

@@ -3,7 +3,7 @@ package util;
 import com.google.common.base.Stopwatch;
 import models.FileTree;
 import models.Information;
-import views.v1.ProgressBarView;
+import views.ProgressBarView;
 
 import java.io.File;
 import java.nio.file.Path;

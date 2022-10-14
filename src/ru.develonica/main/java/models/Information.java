@@ -1,7 +1,7 @@
 package models;
 
 import util.FileCalculator;
-import views.v1.InformationView;
+import views.InformationView;
 
 import java.io.File;
 import java.nio.file.Path;

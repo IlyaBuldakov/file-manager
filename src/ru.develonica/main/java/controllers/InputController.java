@@ -5,7 +5,7 @@ import models.Information;
 import models.Type;
 import util.FileCalculator;
 import util.FileTreeBuilder;
-import views.v1.GreetingView;
+import views.GreetingView;
 
 import java.io.BufferedReader;
 import java.io.IOException;
