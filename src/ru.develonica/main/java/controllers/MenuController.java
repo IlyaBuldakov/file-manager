@@ -11,11 +11,18 @@ import java.nio.file.Path;
  */
 public class MenuController {
 
-    private final static char BACK_BUTTON = 'B';
+    private static final char BACK_BUTTON = 'B';
 
+    /**
+     * Menu handle method.
+     *
+     * @param tree File tree.
+     * @param inputButton Button from user input.
+     * @return New file tree.
+     */
     public static FileTree handleMenu(FileTree tree, char inputButton) {
         Path parent = tree.getTreePath().getParent();
-        if (inputButton == BACK_BUTTON) {
+        if (Character.toUpperCase(inputButton) == BACK_BUTTON) {
             return FileTreeBuilder.build(parent.toString());
         }
         return tree;

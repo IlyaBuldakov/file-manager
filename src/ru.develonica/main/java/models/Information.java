@@ -33,6 +33,12 @@ public class Information {
 
     Path path;
 
+    /**
+     * Creates {@link Information information instance} from file.
+     *
+     * @param file File.
+     * @param number Sequence number (in tree output).
+     */
     public Information(File file, int number) {
         this.objName = file.getName();
         this.type = Type.getType(file);

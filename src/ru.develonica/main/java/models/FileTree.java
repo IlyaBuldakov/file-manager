@@ -11,19 +11,37 @@ import java.util.List;
  */
 public class FileTree {
 
+    /**
+     * File tree content.
+     */
     List<Information> tree;
 
+    /**
+     * Path file tree.
+     */
     Path treePath;
 
+    /**
+     * File tree name (directory name).
+     */
     String headName;
 
+    /**
+     * Total size of all objects in file tree.
+     */
     float totalSize;
 
-
+    /**
+     * Creates file tree with all data.
+     *
+     * @param infoList List of {@link Information}.
+     * @param treePath Path to file tree.
+     * @param headName Name of file tree (directory).
+     */
     public FileTree(List<Information> infoList, Path treePath, String headName) {
         this.tree = infoList;
-        this.headName = headName;
         this.treePath = treePath;
+        this.headName = headName;
         this.totalSize = infoList.stream().map(Information::getSize).reduce(0f, Float::sum);
         AfterFileTreeView.finishBuild(headName, totalSize);
     }

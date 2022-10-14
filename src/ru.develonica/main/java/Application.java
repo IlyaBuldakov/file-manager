@@ -1,16 +1,11 @@
 import controllers.InputController;
 import models.Message;
 
-import java.io.IOException;
-
 public class Application {
 
     public static void main(String[] args) {
         InputController inputController = new InputController();
-        try {
-            inputController.start();
-        } catch (IOException e) {
-            System.err.println(Message.IO_ERROR.getText());
-        }
+        inputController.start();
+        System.err.println(Message.IO_ERROR.getText());
     }
 }

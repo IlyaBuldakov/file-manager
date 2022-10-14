@@ -2,6 +2,7 @@ package controllers;
 
 import models.FileTree;
 import models.Information;
+import models.Message;
 import models.Type;
 import util.FileCalculator;
 import util.FileTreeBuilder;
@@ -16,7 +17,10 @@ import java.io.InputStreamReader;
  */
 public class InputController {
 
-    FileTree fileTree;
+    /**
+     * Active file tree.
+     */
+    private FileTree fileTree;
 
     private static final String HOME_PATH = System.getProperty("user.home");
 
@@ -27,23 +31,28 @@ public class InputController {
      *
      * @throws IOException Exception.
      */
-    public void start() throws IOException {
-        GreetingView.greetingPage();
-        fileTree = FileTreeBuilder.build(HOME_PATH);
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        while (true) {
-            String input = br.readLine();
-            if (input.equalsIgnoreCase(EXIT_VALUE)) {
-                break;
+    public void start() {
+        try {
+            GreetingView.greetingPage();
+            fileTree = FileTreeBuilder.build(HOME_PATH);
+            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+            while (true) {
+                String input = br.readLine();
+                if (input.equalsIgnoreCase(EXIT_VALUE)) {
+                    break;
+                }
+                if (input.length() == 1
+                        && Character.isAlphabetic(input.charAt(0))) {
+                    fileTree = MenuController.handleMenu(fileTree, input.charAt(0));
+                }
+                try {
+                    handleIdInput(Integer.parseInt(input));
+                } catch (NumberFormatException ex) {
+                    fileTree = FileTreeBuilder.build(input);
+                }
             }
-            fileTree = input.length() == 1
-                    ? MenuController.handleMenu(fileTree, input.charAt(0))
-                    : fileTree;
-            try {
-                handleIdInput(Integer.parseInt(input));
-            } catch (NumberFormatException ex) {
-                fileTree = FileTreeBuilder.build(input);
-            }
+        } catch (IOException exception) {
+            System.err.println(Message.IO_ERROR);
         }
     }
 
