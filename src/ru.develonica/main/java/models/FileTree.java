@@ -17,13 +17,15 @@ public class FileTree {
 
     String headName;
 
+    float totalSize;
+
 
     public FileTree(List<Information> infoList, Path treePath, String headName) {
         this.tree = infoList;
         this.headName = headName;
         this.treePath = treePath;
-        this.tree.addAll(infoList);
-        AfterFileTreeView.finishBuild(headName);
+        this.totalSize = infoList.stream().map(Information::getSize).reduce(0f, Float::sum);
+        AfterFileTreeView.finishBuild(headName, totalSize);
     }
 
     /**
@@ -33,7 +35,8 @@ public class FileTree {
         this.tree = Collections.emptyList();
         this.treePath = treePath;
         this.headName = headName;
-        AfterFileTreeView.finishBuild(headName);
+        this.totalSize = 0f;
+        AfterFileTreeView.finishBuild(headName, totalSize);
     }
 
     /**

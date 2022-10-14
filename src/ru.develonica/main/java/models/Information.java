@@ -31,19 +31,14 @@ public class Information {
      */
     int count;
 
-    /**
-     * Total size of objects in dir.
-     */
-    float totalSize;
-
     Path path;
 
     public Information(File file, int number) {
         this.objName = file.getName();
         this.type = Type.getType(file);
         this.count = FileCalculator.calculateCount(file);
+        this.size = FileCalculator.calculateSize(file);
         this.path = file.toPath();
-        this.totalSize = size;
         InformationView.print(this, file, number);
     }
 
