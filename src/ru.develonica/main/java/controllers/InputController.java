@@ -2,10 +2,9 @@ package controllers;
 
 import models.FileTree;
 import models.Information;
-import models.MenuButton;
 import models.Type;
-import util.FileTreeBuilder;
 import util.FileCalculator;
+import util.FileTreeBuilder;
 import views.v1.GreetingView;
 
 import java.io.BufferedReader;
@@ -37,24 +36,23 @@ public class InputController {
             if (input.equalsIgnoreCase(EXIT_VALUE)) {
                 break;
             }
+            fileTree = input.length() == 1
+                    ? MenuController.handleMenu(fileTree, input.charAt(0))
+                    : fileTree;
             try {
-                fileTree = MenuController.handleMenu(fileTree, MenuButton.valueOf(input.toUpperCase()));
-            } catch (IllegalArgumentException exception) {
-                FileTree localTree;
-                try {
-                    Information fileInfo = fileTree.getTree()
-                            .get(Integer.parseInt(input) - 1);
-                    if (fileInfo.getType().equals(Type.DIR)) {
-                        localTree = FileTreeBuilder.build(fileInfo.getPath().toString());
-                        fileTree = localTree;
-                    } else {
-                        FileCalculator.openFile(fileInfo.getPath().toFile());
-                    }
-                } catch (NumberFormatException ex) {
-                    localTree = FileTreeBuilder.build(input);
-                    fileTree = localTree;
-                }
+                handleIdInput(Integer.parseInt(input));
+            } catch (NumberFormatException ex) {
+                fileTree = FileTreeBuilder.build(input);
             }
+        }
+    }
+
+    private void handleIdInput(int id) throws IOException {
+        Information fileInfo = fileTree.getTree().get(id - 1);
+        if (fileInfo.getType().equals(Type.DIR)) {
+            fileTree = FileTreeBuilder.build(fileInfo.getPath().toString());
+        } else {
+            FileCalculator.openFile(fileInfo.getPath().toFile());
         }
     }
 }

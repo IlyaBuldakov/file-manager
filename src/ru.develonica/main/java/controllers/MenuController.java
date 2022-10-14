@@ -1,7 +1,6 @@
 package controllers;
 
 import models.FileTree;
-import models.MenuButton;
 import util.FileTreeBuilder;
 
 import java.nio.file.Path;
@@ -12,9 +11,11 @@ import java.nio.file.Path;
  */
 public class MenuController {
 
-    public static FileTree handleMenu(FileTree tree, MenuButton button) {
+    private final static char BACK_BUTTON = 'B';
+
+    public static FileTree handleMenu(FileTree tree, char inputButton) {
         Path parent = tree.getTreePath().getParent();
-        if (button == MenuButton.B) {
+        if (inputButton == BACK_BUTTON) {
             return FileTreeBuilder.build(parent.toString());
         }
         return tree;
