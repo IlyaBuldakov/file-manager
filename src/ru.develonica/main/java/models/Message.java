@@ -9,7 +9,9 @@ public enum Message {
 
     IO_ERROR("Input/output error. Perhaps the file does not exist or the path is incorrect."),
 
-    SIZE_HANDLER_ERROR("Size handler error.");
+    SIZE_HANDLER_ERROR("Size handler error."),
+
+    OUT_OF_BOUNDS("Incorrect number. Please, check your input.");
 
     private final String text;
 

@@ -50,8 +50,10 @@ public class InputController {
                     fileTree = FileTreeBuilder.build(input);
                 }
             }
+        } catch (IndexOutOfBoundsException exception) {
+            System.err.println(Message.OUT_OF_BOUNDS.getText());
         } catch (IOException exception) {
-            System.err.println(Message.IO_ERROR);
+            System.err.println(Message.IO_ERROR.getText());
         }
     }
 
