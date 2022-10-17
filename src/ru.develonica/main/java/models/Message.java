@@ -13,6 +13,9 @@ public enum Message {
 
     OUT_OF_BOUNDS("Incorrect number. Please, check your input.");
 
+    /**
+     * Error contents.
+     */
     private final String text;
 
     Message(String text) {

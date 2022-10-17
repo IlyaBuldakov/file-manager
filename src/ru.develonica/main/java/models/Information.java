@@ -31,6 +31,9 @@ public class Information {
      */
     int count;
 
+    /**
+     * Object path.
+     */
     Path path;
 
     /**

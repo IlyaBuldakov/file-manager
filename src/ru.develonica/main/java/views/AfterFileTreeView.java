@@ -2,6 +2,10 @@ package views;
 
 import services.SizeConverter;
 
+/**
+ * View that displays additional information
+ * after the output of the file tree.
+ */
 public class AfterFileTreeView {
 
     private static final String FILE_TREE_ENDING = "=== File tree %s === \n";
@@ -11,9 +15,5 @@ public class AfterFileTreeView {
         System.out.println("Total size: " + SizeConverter.convert(totalSize));
         System.out.println("Total count: " + totalCount);
         System.out.println("Enter path/number of directory or use hotkeys.");
-        System.out.println();
-        System.out.println("[B] - back to parent directory.");
-        System.out.println("[+] - create NEW directory in CURRENT folder.");
-        System.out.println("[-] - remove dir/file by ID.");
     }
 }

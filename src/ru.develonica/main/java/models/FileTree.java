@@ -1,6 +1,7 @@
 package models;
 
 import views.AfterFileTreeView;
+import views.MenuView;
 
 import java.nio.file.Path;
 import java.util.Collections;
@@ -50,6 +51,7 @@ public class FileTree {
         this.totalSize = infoList.stream().map(Information::getSize).reduce(0f, Float::sum);
         this.totalCount = infoList.size();
         AfterFileTreeView.finishBuild(headName, totalSize, totalCount);
+        MenuView.displayMenu();
     }
 
     /**
@@ -61,13 +63,9 @@ public class FileTree {
         this.headName = headName;
         this.totalSize = 0f;
         AfterFileTreeView.finishBuild(headName, totalSize, 0);
+        MenuView.displayMenu();
     }
 
-    /**
-     * Returns file tree.
-     *
-     * @return File tree.
-     */
     public List<Information> getTree() {
         return this.tree;
     }

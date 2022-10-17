@@ -18,6 +18,12 @@ public class FileCalculator {
 
     private static final SizeHandler sizeHandler = new ThreadPoolSizeHandler();
 
+    /**
+     * Size calculation method.
+     *
+     * @param file File.
+     * @return Size.
+     */
     public static float calculateSize(File file) {
         try {
             if (file.isDirectory()) {

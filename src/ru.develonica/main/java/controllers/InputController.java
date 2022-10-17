@@ -61,6 +61,12 @@ public class InputController {
         }
     }
 
+    /**
+     * Method of processing a numeric input.
+     *
+     * @param id Identifier of object (dir/file).
+     * @throws IOException IOException.
+     */
     private void handleIdInput(int id) throws IOException {
         Information fileInfo = fileTree.getTree().get(id - 1);
         if (fileInfo.getType().equals(Type.DIR)) {

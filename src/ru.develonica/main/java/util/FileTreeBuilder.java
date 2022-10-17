@@ -16,6 +16,12 @@ public class FileTreeBuilder {
 
     private static final String HOME_PATH = System.getProperty("user.home");
 
+    /**
+     * Method of creating a file tree.
+     *
+     * @param destination File tree destination.
+     * @return {@link FileTree FileTree}.
+     */
     public static FileTree build(String destination) {
         Path pathDest = Path.of(destination);
         File fileDest = pathDest.toFile();
