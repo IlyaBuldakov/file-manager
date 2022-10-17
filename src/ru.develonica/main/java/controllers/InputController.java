@@ -28,8 +28,6 @@ public class InputController {
 
     /**
      * Activating the InputController.
-     *
-     * @throws IOException Exception.
      */
     public void start() {
         try {
@@ -44,6 +42,7 @@ public class InputController {
                 if (input.length() == 1
                         && Character.isAlphabetic(input.charAt(0))) {
                     fileTree = MenuController.handleMenu(fileTree, input.charAt(0));
+                    continue;
                 }
                 try {
                     handleIdInput(Integer.parseInt(input));
