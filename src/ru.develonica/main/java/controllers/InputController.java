@@ -6,6 +6,7 @@ import models.Message;
 import models.Type;
 import util.FileCalculator;
 import util.FileTreeBuilder;
+import views.ErrorView;
 import views.GreetingView;
 
 import java.io.BufferedReader;
@@ -53,9 +54,9 @@ public class InputController {
                 }
             }
         } catch (IndexOutOfBoundsException exception) {
-            System.err.println(Message.OUT_OF_BOUNDS.getText());
+            ErrorView.displayError(Message.OUT_OF_BOUNDS);
         } catch (IOException exception) {
-            System.err.println(Message.IO_ERROR.getText());
+            ErrorView.displayError(Message.IO_ERROR);
         }
     }
 

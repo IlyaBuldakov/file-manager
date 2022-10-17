@@ -3,6 +3,7 @@ package util;
 import models.Message;
 import services.SizeHandler;
 import services.ThreadPoolSizeHandler;
+import views.ErrorView;
 
 import java.awt.Desktop;
 import java.io.File;
@@ -23,12 +24,12 @@ public class FileCalculator {
                 try {
                     return sizeHandler.activate(file);
                 } catch (ExecutionException | InterruptedException e) {
-                    System.err.println(Message.INTERNAL_ERROR);
+                    ErrorView.displayError(Message.INTERNAL_ERROR);
                 }
             }
             return Files.size(file.toPath());
         } catch (IOException exception) {
-            System.err.println(Message.IO_ERROR.getText());
+            ErrorView.displayError(Message.IO_ERROR);
         }
         return 0;
     }

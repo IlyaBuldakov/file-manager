@@ -1,5 +1,7 @@
 package models;
 
+import views.ErrorView;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -29,7 +31,7 @@ public enum Type {
             String type = Files.probeContentType(file.toPath());
             return type == null ? DIR : Type.parseType(type);
         } catch (IOException e) {
-            System.err.println(Message.IO_ERROR.getText());
+            ErrorView.displayError(Message.IO_ERROR);
         }
         return DIR;
     }

@@ -1,9 +1,10 @@
 package services;
 
 import models.Message;
+import views.ErrorView;
 
 import java.io.File;
-    import java.io.IOException;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
@@ -26,10 +27,10 @@ public class ThreadPoolSizeHandler implements SizeHandler {
                         try {
                             return activate(file);
                         } catch (ExecutionException | InterruptedException e) {
-                            System.err.println(Message.SIZE_HANDLER_ERROR);
+                            ErrorView.displayError(Message.SIZE_HANDLER_ERROR);
                             return 0f;
                         } catch (IOException e) {
-                            System.err.println(Message.IO_ERROR);
+                            ErrorView.displayError(Message.IO_ERROR);
                             return 0f;
                         }
                     }, threadPool).get();
