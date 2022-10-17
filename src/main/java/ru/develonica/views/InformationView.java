@@ -1,8 +1,8 @@
-package views;
+package ru.develonica.views;
 
-import models.Information;
-import models.Type;
-import services.SizeConverter;
+import ru.develonica.models.Information;
+import ru.develonica.models.Type;
+import ru.develonica.services.SizeConverter;
 
 public class InformationView {
 

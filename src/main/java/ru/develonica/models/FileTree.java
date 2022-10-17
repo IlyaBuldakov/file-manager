@@ -1,7 +1,7 @@
-package models;
+package ru.develonica.models;
 
-import views.AfterFileTreeView;
-import views.MenuView;
+import ru.develonica.views.AfterFileTreeView;
+import ru.develonica.views.MenuView;
 
 import java.nio.file.Path;
 import java.util.Collections;

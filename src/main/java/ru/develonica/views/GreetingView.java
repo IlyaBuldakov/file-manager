@@ -1,4 +1,4 @@
-package views;
+package ru.develonica.views;
 
 import java.util.concurrent.CompletableFuture;
 

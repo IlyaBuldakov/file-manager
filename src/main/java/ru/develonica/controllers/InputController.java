@@ -1,13 +1,13 @@
-package controllers;
+package ru.develonica.controllers;
 
-import models.FileTree;
-import models.Information;
-import models.Message;
-import models.Type;
-import util.FileCalculator;
-import util.FileTreeBuilder;
-import views.ErrorView;
-import views.GreetingView;
+import ru.develonica.models.FileTree;
+import ru.develonica.models.Information;
+import ru.develonica.models.Message;
+import ru.develonica.models.Type;
+import ru.develonica.util.FileCalculator;
+import ru.develonica.util.FileTreeBuilder;
+import ru.develonica.views.ErrorView;
+import ru.develonica.views.GreetingView;
 
 import java.io.BufferedReader;
 import java.io.IOException;

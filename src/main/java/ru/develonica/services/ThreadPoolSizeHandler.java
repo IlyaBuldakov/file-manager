@@ -1,7 +1,7 @@
-package services;
+package ru.develonica.services;
 
-import models.Message;
-import views.ErrorView;
+import ru.develonica.models.Message;
+import ru.develonica.views.ErrorView;
 
 import java.io.File;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package services;
+package ru.develonica.services;
 
 import java.io.File;
 import java.io.IOException;

@@ -1,6 +1,6 @@
-package views;
+package ru.develonica.views;
 
-import models.Message;
+import ru.develonica.models.Message;
 
 /**
  * View that displays errors.

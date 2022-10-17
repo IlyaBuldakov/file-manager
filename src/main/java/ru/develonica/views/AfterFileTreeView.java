@@ -1,6 +1,6 @@
-package views;
+package ru.develonica.views;
 
-import services.SizeConverter;
+import ru.develonica.services.SizeConverter;
 
 /**
  * View that displays additional information

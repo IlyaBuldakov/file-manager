@@ -1,7 +1,7 @@
-package models;
+package ru.develonica.models;
 
-import util.FileCalculator;
-import views.InformationView;
+import ru.develonica.util.FileCalculator;
+import ru.develonica.views.InformationView;
 
 import java.io.File;
 import java.nio.file.Path;

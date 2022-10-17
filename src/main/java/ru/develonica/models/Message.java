@@ -1,4 +1,4 @@
-package models;
+package ru.develonica.models;
 
 /**
  * Messages for user.

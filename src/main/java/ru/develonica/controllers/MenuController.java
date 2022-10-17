@@ -1,9 +1,9 @@
-package controllers;
+package ru.develonica.controllers;
 
-import models.FileTree;
-import models.Message;
-import util.FileTreeBuilder;
-import views.MenuOperationsView;
+import ru.develonica.models.FileTree;
+import ru.develonica.models.Message;
+import ru.develonica.util.FileTreeBuilder;
+import ru.develonica.views.MenuOperationsView;
 
 import java.io.IOException;
 import java.nio.file.Files;

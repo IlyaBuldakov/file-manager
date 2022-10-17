@@ -1,4 +1,6 @@
-import controllers.InputController;
+package ru.develonica;
+
+import ru.develonica.controllers.InputController;
 
 /**
  * Main application class.

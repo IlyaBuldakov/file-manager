@@ -1,9 +1,9 @@
-package util;
+package ru.develonica.util;
 
-import models.Message;
-import services.SizeHandler;
-import services.ThreadPoolSizeHandler;
-import views.ErrorView;
+import ru.develonica.models.Message;
+import ru.develonica.services.SizeHandler;
+import ru.develonica.services.ThreadPoolSizeHandler;
+import ru.develonica.views.ErrorView;
 
 import java.awt.Desktop;
 import java.io.File;
