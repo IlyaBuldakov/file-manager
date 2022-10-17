@@ -16,6 +16,10 @@ import java.util.concurrent.TimeUnit;
  */
 public class FileTreeBuilder {
 
+    private static final String HOME_PATH = System.getProperty("user.home");
+
+    private static final String MS_MEASURE = " ms.";
+
     public static FileTree build(String destination) {
         Stopwatch stopwatch = Stopwatch.createStarted();
         Path pathDest = Path.of(destination);
@@ -25,16 +29,16 @@ public class FileTreeBuilder {
             if (files != null) {
                 List<Information> infoList = createInfoList(files);
                 stopwatch.stop();
-                System.out.println(stopwatch.elapsed(TimeUnit.MILLISECONDS) + " ms.");
+                System.out.println(stopwatch.elapsed(TimeUnit.MILLISECONDS) + MS_MEASURE);
                 return new FileTree(infoList, pathDest, fileDest.getName());
             }
             stopwatch.stop();
-            System.out.println(stopwatch.elapsed(TimeUnit.MILLISECONDS) + " ms.");
+            System.out.println(stopwatch.elapsed(TimeUnit.MILLISECONDS) + MS_MEASURE);
             return new FileTree(fileDest.getName(), pathDest);
         }
         stopwatch.stop();
-        System.out.println(stopwatch.elapsed(TimeUnit.MILLISECONDS) + " ms.");
-        return build(System.getProperty("user.home"));
+        System.out.println(stopwatch.elapsed(TimeUnit.MILLISECONDS) + MS_MEASURE);
+        return build(HOME_PATH);
     }
 
     /**
@@ -44,12 +48,13 @@ public class FileTreeBuilder {
      * @return List of {@link Information information}.
      */
     public static LinkedList<Information> createInfoList(File[] files) {
+        int total = files.length * 10;
         LinkedList<Information> infoList = new LinkedList<>();
         int progressCounter = 10;
         for (int i = 0; i < files.length; i++) {
             Information info = new Information(files[i], i + 1);
             infoList.add(info);
-            ProgressBarView.displayProgress(progressCounter, files.length * 10);
+            ProgressBarView.displayProgress(progressCounter, total);
             progressCounter += 10;
         }
         return infoList;
