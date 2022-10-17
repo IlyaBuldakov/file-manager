@@ -1,10 +1,8 @@
 package util;
 
-import com.google.common.base.Stopwatch;
 import models.FileTree;
 import models.Information;
 import views.ProgressBarView;
-import views.StopwatchView;
 
 import java.io.File;
 import java.nio.file.Path;
@@ -19,23 +17,16 @@ public class FileTreeBuilder {
     private static final String HOME_PATH = System.getProperty("user.home");
 
     public static FileTree build(String destination) {
-        Stopwatch stopwatch = Stopwatch.createStarted();
         Path pathDest = Path.of(destination);
         File fileDest = pathDest.toFile();
         if (fileDest.exists()) {
             File[] files = fileDest.listFiles();
             if (files != null) {
                 List<Information> infoList = createInfoList(files);
-                stopwatch.stop();
-                StopwatchView.elapsed(stopwatch);
                 return new FileTree(infoList, pathDest, fileDest.getName());
             }
-            stopwatch.stop();
-            StopwatchView.elapsed(stopwatch);
             return new FileTree(fileDest.getName(), pathDest);
         }
-        stopwatch.stop();
-        StopwatchView.elapsed(stopwatch);
         return build(HOME_PATH);
     }
 
