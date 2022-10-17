@@ -18,6 +18,8 @@ public enum Type {
 
     TEXT,
 
+    OTHER,
+
     DIR;
 
     /**
@@ -50,7 +52,7 @@ public enum Type {
         } else if (type.contains("text")) {
             return Type.TEXT;
         } else {
-            return Type.DIR;
+            return Type.OTHER;
         }
     }
 }
