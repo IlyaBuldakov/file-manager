@@ -22,4 +22,11 @@ public class GreetingView {
             return null;
         });
     }
+
+    /**
+     * Called after each request (line entered).
+     */
+    public static void pleaseWait() {
+        System.out.println("Please wait...");
+    }
 }

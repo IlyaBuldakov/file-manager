@@ -37,6 +37,7 @@ public class InputController {
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
             while (true) {
                 String input = br.readLine();
+                GreetingView.pleaseWait();
                 if (input.equalsIgnoreCase(EXIT_VALUE)) {
                     break;
                 }

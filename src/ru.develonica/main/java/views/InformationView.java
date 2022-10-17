@@ -1,6 +1,7 @@
 package views;
 
 import models.Information;
+import models.Type;
 import services.SizeConverter;
 
 public class InformationView {
@@ -12,16 +13,17 @@ public class InformationView {
      * @param number Sequence number.
      */
     public static void print(Information info, int number) {
-        String firstPart = number
-                + " | Name: " + info.getObjName()
-                + " \\ Type: " + info.getType()
-                + " \\ Size: ";
-        String secondPart =
-                " \\ Count: " + info.getCount();
-        String sb = firstPart +
-                info.getSize() +
-                secondPart;
-        System.out.print(sb);
-        System.out.println("\r" + firstPart + SizeConverter.convert(info.getSize()) + secondPart);
+        String objName = info.getObjName();
+        Type type = info.getType();
+        String size = SizeConverter.convert(info.getSize());
+        int count = info.getCount();
+        String object =
+                number
+                + " | Name: " + objName
+                + " \\ Type: " + type
+                + " \\ Size: " + size
+                + " \\ Count: " + count;
+
+        System.out.println("\r" + object);
     }
 }
