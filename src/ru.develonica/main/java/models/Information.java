@@ -45,7 +45,7 @@ public class Information {
         this.count = FileCalculator.calculateCount(file);
         this.size = FileCalculator.calculateSize(file);
         this.path = file.toPath();
-        InformationView.print(this, file, number);
+        InformationView.print(this, number);
     }
 
     public String getObjName() {
