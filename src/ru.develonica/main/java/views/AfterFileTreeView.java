@@ -10,6 +10,9 @@ public class AfterFileTreeView {
         System.out.printf(FILE_TREE_ENDING, headName);
         System.out.println("=== Total size: " + SizeConverter.convert(totalSize) + " ===");
         System.out.println("Enter path/number of directory or use hotkeys.");
+        System.out.println();
         System.out.println("[B] - back to parent directory.");
+        System.out.println("[+] - create NEW directory in CURRENT folder.");
+        System.out.println("[-] - remove dir/file by ID.");
     }
 }

@@ -40,7 +40,9 @@ public class InputController {
                     break;
                 }
                 if (input.length() == 1
-                        && Character.isAlphabetic(input.charAt(0))) {
+                        && (Character.isAlphabetic(input.charAt(0))
+                        || input.charAt(0) == '+'
+                        || input.charAt(0) == '-')) {
                     fileTree = MenuController.handleMenu(fileTree, input.charAt(0));
                     continue;
                 }
