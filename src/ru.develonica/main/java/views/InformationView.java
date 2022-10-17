@@ -14,8 +14,12 @@ public class InformationView {
      * @param number Sequence number.
      */
     public static void print(Information info, int number) {
-        String firstPart = number + " | " + "Name: " + info.getObjName() + " | Type: " + info.getType() + " | Size: ";
-        String secondPart = " | Count: " + info.getCount();
+        String firstPart = number
+                + " | Name: " + info.getObjName()
+                + " \\ Type: " + info.getType()
+                + " \\ Size: ";
+        String secondPart =
+                " \\ Count: " + info.getCount();
         String sb = firstPart +
                 info.getSize() +
                 secondPart;
