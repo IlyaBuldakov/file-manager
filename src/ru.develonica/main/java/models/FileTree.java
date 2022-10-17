@@ -32,6 +32,11 @@ public class FileTree {
     float totalSize;
 
     /**
+     * Total count of all objects.
+     */
+    int totalCount;
+
+    /**
      * Creates file tree with all data.
      *
      * @param infoList List of {@link Information}.
@@ -43,7 +48,8 @@ public class FileTree {
         this.treePath = treePath;
         this.headName = headName;
         this.totalSize = infoList.stream().map(Information::getSize).reduce(0f, Float::sum);
-        AfterFileTreeView.finishBuild(headName, totalSize);
+        this.totalCount = infoList.size();
+        AfterFileTreeView.finishBuild(headName, totalSize, totalCount);
     }
 
     /**
@@ -54,7 +60,7 @@ public class FileTree {
         this.treePath = treePath;
         this.headName = headName;
         this.totalSize = 0f;
-        AfterFileTreeView.finishBuild(headName, totalSize);
+        AfterFileTreeView.finishBuild(headName, totalSize, 0);
     }
 
     /**

@@ -5,8 +5,6 @@ import services.SizeConverter;
 
 public class InformationView {
 
-    public static final String WHITE_BRIGHT = "\033[0;97m";
-
     /**
      * Method which prints information in console.
      *
@@ -23,7 +21,7 @@ public class InformationView {
         String sb = firstPart +
                 info.getSize() +
                 secondPart;
-        System.out.print(sb + WHITE_BRIGHT);
+        System.out.print(sb);
         System.out.println("\r" + firstPart + SizeConverter.convert(info.getSize()) + secondPart);
     }
 }
