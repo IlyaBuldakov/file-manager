@@ -9,7 +9,6 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.stream.Collectors;
 
 public class ThreadPoolSizeHandler implements SizeHandler {
 
@@ -19,23 +18,21 @@ public class ThreadPoolSizeHandler implements SizeHandler {
         File[] files = destination.listFiles();
         float filesSize = 0f;
         if (files != null && files.length != 0) {
-            List<File> dest = new ArrayList<>();
+            List<CompletableFuture<Float>> cfList = new ArrayList<>();
             for (File file : files) {
                 if (file.isFile()) {
                     filesSize += Files.size(file.toPath());
                 } else {
-                    dest.add(file);
-                }
-            }
-            List<CompletableFuture<Float>> cfList = dest.stream()
-                    .map(file -> CompletableFuture.supplyAsync(() -> {
+                    cfList.add(CompletableFuture.supplyAsync(() -> {
                         try {
                             return activate(file);
                         } catch (ExecutionException | InterruptedException | IOException e) {
                             throw new RuntimeException(e);
                         }
-                    }, threadPool)).collect(Collectors.toList());
-            CompletableFuture.allOf(cfList.toArray(new CompletableFuture[0])).join();
+                    }, threadPool));
+                }
+            }
+            CompletableFuture.allOf(cfList.toArray(CompletableFuture[]::new)).join();
             filesSize += cfList.stream().map(CompletableFuture::join).reduce(0f, Float::sum);
         }
         return filesSize;
