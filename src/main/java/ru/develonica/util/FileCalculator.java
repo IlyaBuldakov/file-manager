@@ -14,9 +14,11 @@ import java.util.concurrent.ExecutionException;
 /**
  * Utility class for work with files.
  */
-public class FileCalculator {
+public final class FileCalculator {
 
     private static final SizeHandler sizeHandler = new ThreadPoolSizeHandler();
+
+    private static final ErrorView errorView = new ErrorView();
 
     /**
      * Size calculation method.
@@ -30,12 +32,12 @@ public class FileCalculator {
                 try {
                     return sizeHandler.activate(file);
                 } catch (ExecutionException | InterruptedException e) {
-                    ErrorView.displayError(Message.INTERNAL_ERROR);
+                    errorView.proceed(Message.INTERNAL_ERROR);
                 }
             }
             return Files.size(file.toPath());
         } catch (IOException exception) {
-            ErrorView.displayError(Message.IO_ERROR);
+            errorView.proceed(Message.IO_ERROR);
         }
         return 0;
     }

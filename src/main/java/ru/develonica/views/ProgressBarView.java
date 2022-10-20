@@ -1,6 +1,6 @@
 package ru.develonica.views;
 
-public class ProgressBarView {
+public final class ProgressBarView {
 
     /**
      * Progress bar for building a file tree.
@@ -8,7 +8,7 @@ public class ProgressBarView {
      * @param done  Done part.
      * @param total Total (aim).
      */
-    public static void displayProgress(int done, int total) {
+    public void proceed(int done, int total) {
         int size = 10;
         String iconDone = "█";
         String iconRemain = "░";
@@ -27,9 +27,9 @@ public class ProgressBarView {
                 bar.append(iconRemain);
             }
         }
-        System.out.print("\r" + bar + " " + donePercents + "%" + " [PROCESSING] ");
+        System.out.printf("\r %s %d%% [PROCESSING]", bar, donePercents);
         if (done == total) {
-            System.out.print("\r" + bar + " " + donePercents + "%");
+            System.out.printf("\r %s %d%%", bar, donePercents);
             System.out.print("\n");
         }
     }

@@ -7,7 +7,9 @@ import ru.develonica.models.Type;
 import ru.develonica.util.FileCalculator;
 import ru.develonica.util.FileTreeBuilder;
 import ru.develonica.views.ErrorView;
+import ru.develonica.views.FileTreeView;
 import ru.develonica.views.GreetingView;
+import ru.develonica.views.MenuView;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -18,26 +20,37 @@ import java.io.InputStreamReader;
  */
 public class InputController {
 
+    private static final String HOME_PATH = System.getProperty("user.home");
+
+    private static final String EXIT_VALUE = "exit";
+
     /**
      * Active file tree.
      */
     private FileTree fileTree;
 
-    private static final String HOME_PATH = System.getProperty("user.home");
+    private final FileTreeView fileTreeView = new FileTreeView();
 
-    private static final String EXIT_VALUE = "exit";
+    private final GreetingView greetingView = new GreetingView();
+
+    private final MenuView menuView = new MenuView();
+
+    private final ErrorView errorView = new ErrorView();
+
+    private final MenuController menuController = new MenuController();
 
     /**
      * Activating the InputController.
      */
     public void start() {
         try {
-            GreetingView.greetingPage();
-            fileTree = FileTreeBuilder.build(HOME_PATH);
+            this.greetingView.greetingPage();
+            this.fileTree = FileTreeBuilder.build(HOME_PATH);
+            refreshOutput();
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
             while (true) {
                 String input = br.readLine();
-                GreetingView.pleaseWait();
+                greetingView.pleaseWait();
                 if (input.equalsIgnoreCase(EXIT_VALUE)) {
                     break;
                 }
@@ -45,20 +58,28 @@ public class InputController {
                         && (Character.isAlphabetic(input.charAt(0))
                         || input.charAt(0) == '+'
                         || input.charAt(0) == '-')) {
-                    fileTree = MenuController.handleMenu(fileTree, input.charAt(0));
+                    this.fileTree = this.menuController.handleMenu(this.fileTree, input.charAt(0));
+                    refreshOutput();
                     continue;
                 }
                 try {
                     handleIdInput(Integer.parseInt(input));
+                    refreshOutput();
                 } catch (NumberFormatException ex) {
-                    fileTree = FileTreeBuilder.build(input);
+                    this.fileTree = FileTreeBuilder.build(input);
+                    refreshOutput();
                 }
             }
         } catch (IndexOutOfBoundsException exception) {
-            ErrorView.displayError(Message.OUT_OF_BOUNDS);
+            this.errorView.proceed(Message.OUT_OF_BOUNDS);
         } catch (IOException exception) {
-            ErrorView.displayError(Message.IO_ERROR);
+            this.errorView.proceed(Message.IO_ERROR);
         }
+    }
+
+    private void refreshOutput() {
+        this.fileTreeView.proceed(this.fileTree);
+        this.menuView.proceed();
     }
 
     /**
@@ -68,9 +89,9 @@ public class InputController {
      * @throws IOException IOException.
      */
     private void handleIdInput(int id) throws IOException {
-        Information fileInfo = fileTree.getTree().get(id - 1);
+        Information fileInfo = this.fileTree.getTree().get(id - 1);
         if (fileInfo.getType().equals(Type.DIR)) {
-            fileTree = FileTreeBuilder.build(fileInfo.getPath().toString());
+            this.fileTree = FileTreeBuilder.build(fileInfo.getPath().toString());
         } else {
             FileCalculator.openFile(fileInfo.getPath().toFile());
         }

@@ -16,6 +16,8 @@ public class FileTreeBuilder {
 
     private static final String HOME_PATH = System.getProperty("user.home");
 
+    private static final ProgressBarView progressBarView = new ProgressBarView();
+
     /**
      * Method of creating a file tree.
      *
@@ -49,7 +51,7 @@ public class FileTreeBuilder {
         for (int i = 0; i < files.length; i++) {
             Information info = new Information(files[i], i + 1);
             infoList.add(info);
-            ProgressBarView.displayProgress(progressCounter, total);
+            progressBarView.proceed(progressCounter, total);
             progressCounter += 10;
         }
         return infoList;

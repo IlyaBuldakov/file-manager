@@ -1,8 +1,5 @@
 package ru.develonica.models;
 
-import ru.develonica.views.AfterFileTreeView;
-import ru.develonica.views.MenuView;
-
 import java.nio.file.Path;
 import java.util.Collections;
 import java.util.List;
@@ -50,8 +47,6 @@ public class FileTree {
         this.headName = headName;
         this.totalSize = infoList.stream().map(Information::getSize).reduce(0f, Float::sum);
         this.totalCount = infoList.size();
-        AfterFileTreeView.finishBuild(headName, totalSize, totalCount);
-        MenuView.displayMenu();
     }
 
     /**
@@ -62,8 +57,6 @@ public class FileTree {
         this.treePath = treePath;
         this.headName = headName;
         this.totalSize = 0f;
-        AfterFileTreeView.finishBuild(headName, totalSize, 0);
-        MenuView.displayMenu();
     }
 
     public List<Information> getTree() {
@@ -72,5 +65,17 @@ public class FileTree {
 
     public Path getTreePath() {
         return treePath;
+    }
+
+    public String getHeadName() {
+        return headName;
+    }
+
+    public float getTotalSize() {
+        return totalSize;
+    }
+
+    public int getTotalCount() {
+        return totalCount;
     }
 }

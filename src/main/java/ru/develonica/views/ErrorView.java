@@ -5,9 +5,9 @@ import ru.develonica.models.Message;
 /**
  * View that displays errors.
  */
-public class ErrorView {
+public final class ErrorView {
 
-    public static void displayError(Message message) {
+    public void proceed(Message message) {
         System.err.println(message.getText());
     }
 }

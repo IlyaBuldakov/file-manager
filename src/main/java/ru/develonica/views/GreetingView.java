@@ -1,32 +1,29 @@
 package ru.develonica.views;
 
-import java.util.concurrent.CompletableFuture;
+public final class GreetingView {
 
-public class GreetingView {
+    private static final String greetingMessage = """
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+             **** Welcome! Here is your home path *********
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+             ***** You can navigate at your file **********
+             ***** system using absolute path *************
+             ***** or numbers in directory list. **********
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+            """;
 
     /**
      * The greeting method that is called when the
      * program starts before interacting with the user.
      */
-    public static void greetingPage() {
-        CompletableFuture.supplyAsync(() -> {
-            System.out.println();
-            System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
-            System.out.println("**** Welcome! Here is your home path *********");
-            System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
-            System.out.println("***** You can navigate at your file **********");
-            System.out.println("***** system using absolute path *************");
-            System.out.println("***** or numbers in directory list. **********");
-            System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
-            System.out.println();
-            return null;
-        });
+    public void greetingPage() {
+        System.out.println(greetingMessage);
     }
 
     /**
      * Called after each request (line entered).
      */
-    public static void pleaseWait() {
+    public void pleaseWait() {
         System.out.println("Please wait...");
     }
 }

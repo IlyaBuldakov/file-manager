@@ -1,7 +1,6 @@
 package ru.develonica.models;
 
 import ru.develonica.util.FileCalculator;
-import ru.develonica.views.InformationView;
 
 import java.io.File;
 import java.nio.file.Path;
@@ -37,6 +36,11 @@ public class Information {
     Path path;
 
     /**
+     * Sequence number in list.
+     */
+    int number;
+
+    /**
      * Creates {@link Information information instance} from file.
      *
      * @param file File.
@@ -48,7 +52,7 @@ public class Information {
         this.count = FileCalculator.calculateCount(file);
         this.size = FileCalculator.calculateSize(file);
         this.path = file.toPath();
-        InformationView.print(this, number);
+        this.number = number;
     }
 
     public String getObjName() {
@@ -69,5 +73,9 @@ public class Information {
 
     public Path getPath() {
         return path;
+    }
+
+    public int getNumber() {
+        return number;
     }
 }
