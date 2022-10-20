@@ -20,8 +20,6 @@ import java.io.InputStreamReader;
  */
 public class InputController {
 
-    private static final String HOME_PATH = System.getProperty("user.home");
-
     private static final String EXIT_VALUE = "exit";
 
     /**
@@ -39,13 +37,16 @@ public class InputController {
 
     private final MenuController menuController = new MenuController();
 
+    public InputController(FileTree fileTree) {
+        this.fileTree = fileTree;
+    }
+
     /**
      * Activating the InputController.
      */
     public void start() {
         try {
             this.greetingView.greetingPage();
-            this.fileTree = FileTreeBuilder.build(HOME_PATH);
             refreshOutput();
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
             while (true) {
