@@ -7,6 +7,9 @@ import ru.develonica.service.SizeConverter;
 
 import java.util.List;
 
+/**
+ * View that displays {@link FileTree}.
+ */
 public final class FileTreeView {
 
     private static final String FILE_TREE_ENDING = "=== File tree %s === \n";

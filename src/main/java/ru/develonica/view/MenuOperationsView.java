@@ -1,5 +1,8 @@
 package ru.develonica.view;
 
+/**
+ * View that outputs condition about menu operations.
+ */
 public final class MenuOperationsView {
 
     /**
