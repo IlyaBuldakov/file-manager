@@ -21,10 +21,7 @@ public enum Message {
      */
     OUT_OF_BOUNDS("Incorrect number. Please, check your input."),
 
-    /**
-     * File not found error. When user tries to delete non-existent file.
-     */
-    FILE_NOT_FOUND("File not found. Please, try another one.");
+    ILLEGAL_ARGUMENT("Incorrect input. Please, try again");
 
     /**
      * Error contents.

@@ -2,10 +2,10 @@ package ru.develonica.controller;
 
 import ru.develonica.model.FileTree;
 import ru.develonica.model.Information;
-import ru.develonica.model.MenuButtons;
 import ru.develonica.model.Type;
 import ru.develonica.util.FileOperationsUtil;
 import ru.develonica.util.FileTreeBuilder;
+import ru.develonica.util.Validator;
 import ru.develonica.view.ErrorView;
 import ru.develonica.view.FileTreeView;
 import ru.develonica.view.GreetingView;
@@ -62,17 +62,18 @@ public class InputController {
                 if (input.equalsIgnoreCase(EXIT_VALUE)) {
                     break;
                 }
-                if (input.length() == 1
-                        && (Character.isAlphabetic(input.charAt(0))
-                        || input.charAt(0) == MenuButtons.CREATE_BUTTON.getSymbol()
-                        || input.charAt(0) == MenuButtons.DELETE_BUTTON.getSymbol())) {
-                    this.fileTree = this.menuController.handleMenu(this.fileTree, input.charAt(0));
-                    refreshOutput();
-                    continue;
+                if (Validator.isMenuButton(input)) {
+                    try {
+                        this.fileTree = this.menuController.handleMenu(this.fileTree, input.charAt(0));
+                        refreshOutput();
+                        continue;
+                    } catch (Throwable throwable) {
+                        this.errorView.proceed(throwable);
+                    }
                 }
                 try {
                     int id = Integer.parseInt(input);
-                    if (id <= fileTree.getTree().size() && id > 0) {
+                    if (Validator.isObjectIdValid(this.fileTree, id)) {
                         handleIdInput(id);
                         refreshOutput();
                     } else {

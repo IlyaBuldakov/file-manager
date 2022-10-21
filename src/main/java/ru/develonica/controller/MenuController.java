@@ -3,6 +3,7 @@ package ru.develonica.controller;
 import ru.develonica.model.FileTree;
 import ru.develonica.model.MenuButtons;
 import ru.develonica.util.FileTreeBuilder;
+import ru.develonica.util.Validator;
 import ru.develonica.view.ErrorView;
 import ru.develonica.view.MenuOperationsView;
 
@@ -25,8 +26,6 @@ public class MenuController {
 
     private final MenuOperationsView menuOperationsView;
 
-    private final ErrorView errorView = new ErrorView();
-
     public MenuController(MenuOperationsView menuOperationsView) {
         this.menuOperationsView = menuOperationsView;
     }
@@ -38,7 +37,7 @@ public class MenuController {
      * @param inputButton Button from user input.
      * @return New file tree.
      */
-    public FileTree handleMenu(FileTree tree, char inputButton) throws IOException, NumberFormatException {
+    public FileTree handleMenu(FileTree tree, char inputButton) throws NumberFormatException, IOException {
         Path parent = tree.getTreePath().getParent();
         final char upperCaseInput = Character.toUpperCase(inputButton);
         if (upperCaseInput == BACK_BUTTON) {
@@ -56,14 +55,15 @@ public class MenuController {
         if (upperCaseInput == DELETE_BUTTON) {
             this.menuOperationsView.enterIdToDelete();
             int id = Integer.parseInt(new Scanner(System.in).nextLine());
-            Path pathToDelete = tree.getTree().get(id - 1).getPath();
-            if (Files.deleteIfExists(pathToDelete)) {
+            if (Validator.isObjectIdValid(tree, id)) {
+                Path pathToDelete = tree.getTree().get(id - 1).getPath();
+                Files.delete(pathToDelete);
                 this.menuOperationsView.deleteSuccess();
+                // Rebuild tree without deleted dir/file.
+                return FileTreeBuilder.build(tree.getTreePath().toString());
             } else {
-                this.errorView.proceedNotFoundPath(pathToDelete);
+                throw new IllegalArgumentException();
             }
-            // Rebuild tree without deleted dir/file.
-            return FileTreeBuilder.build(tree.getTreePath().toString());
         }
         return tree;
     }
