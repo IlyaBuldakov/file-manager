@@ -13,32 +13,32 @@ public class Information {
     /**
      * Object name.
      */
-    String objName;
+    private final String objName;
 
     /**
      * Object type (e.g., dir or file).
      */
-    Type type;
+    private final Type type;
 
     /**
      * Size of object.
      */
-    float size;
+    private final float size;
 
     /**
      * Count of objects.
      */
-    int count;
+    private final int count;
 
     /**
      * Object path.
      */
-    Path path;
+    private final Path path;
 
     /**
      * Sequence number in list.
      */
-    int number;
+    private final int number;
 
     /**
      * Creates {@link Information information instance} from file.

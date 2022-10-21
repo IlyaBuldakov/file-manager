@@ -12,27 +12,27 @@ public class FileTree {
     /**
      * File tree content.
      */
-    List<Information> tree;
+    private final List<Information> tree;
 
     /**
      * Path file tree.
      */
-    Path treePath;
+    private final Path treePath;
 
     /**
      * File tree name (directory name).
      */
-    String headName;
+    private final String headName;
 
     /**
      * Total size of all objects in file tree.
      */
-    float totalSize;
+    private final float totalSize;
 
     /**
      * Total count of all objects.
      */
-    int totalCount;
+    private int totalCount;
 
     /**
      * Creates file tree with all data.

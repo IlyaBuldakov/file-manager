@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Utility file tree builder class.
  */
-public class FileTreeBuilder {
+public final class FileTreeBuilder {
 
     private static final String HOME_PATH = System.getProperty("user.home");
 

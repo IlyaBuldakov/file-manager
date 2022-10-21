@@ -5,7 +5,7 @@ package ru.develonica.services;
  */
 public class SizeConverter {
 
-    public static final String[] measures = new String[] {
+    public static final String[] MEASURES = new String[] {
             "BYTES", "KB", "MB", "GB", "TB"
     };
 
@@ -22,6 +22,6 @@ public class SizeConverter {
             input /= 1024;
             counter++;
         }
-        return String.format("%.2f " + measures[counter], input);
+        return String.format("%.2f " + MEASURES[counter], input);
     }
 }

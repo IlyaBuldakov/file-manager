@@ -22,7 +22,7 @@ public enum Type {
 
     DIR;
 
-    private static final ErrorView errorView = new ErrorView();
+    private static final ErrorView ERROR_VIEW = new ErrorView();
 
     /**
      * Method defining the type of object.
@@ -35,7 +35,7 @@ public enum Type {
             String type = Files.probeContentType(file.toPath());
             return type == null ? DIR : Type.parseType(type);
         } catch (IOException exception) {
-            errorView.proceed(Message.IO_ERROR);
+            ERROR_VIEW.proceed(Message.IO_ERROR);
         }
         return DIR;
     }
