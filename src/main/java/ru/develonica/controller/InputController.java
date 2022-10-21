@@ -28,18 +28,24 @@ public class InputController {
      */
     private FileTree fileTree;
 
-    private final FileTreeView fileTreeView = new FileTreeView();
+    private final FileTreeView fileTreeView;
 
-    private final GreetingView greetingView = new GreetingView();
+    private final GreetingView greetingView;
 
-    private final MenuView menuView = new MenuView();
+    private final MenuView menuView;
 
-    private final ErrorView errorView = new ErrorView();
+    private final ErrorView errorView;
 
-    private final MenuController menuController = new MenuController();
+    private final MenuController menuController;
 
-    public InputController(FileTree fileTree) {
+    public InputController(FileTree fileTree, FileTreeView fileTreeView, GreetingView greetingView,
+                           MenuView menuView, ErrorView errorView, MenuController menuController) {
         this.fileTree = fileTree;
+        this.fileTreeView = fileTreeView;
+        this.greetingView = greetingView;
+        this.menuView = menuView;
+        this.errorView = errorView;
+        this.menuController = menuController;
     }
 
     /**

@@ -1,9 +1,15 @@
 package ru.develonica;
 
 import ru.develonica.controller.InputController;
+import ru.develonica.controller.MenuController;
 import ru.develonica.model.FileTree;
 import ru.develonica.model.ThreadPoolHolder;
 import ru.develonica.util.FileTreeBuilder;
+import ru.develonica.view.ErrorView;
+import ru.develonica.view.FileTreeView;
+import ru.develonica.view.GreetingView;
+import ru.develonica.view.MenuOperationsView;
+import ru.develonica.view.MenuView;
 
 import java.util.concurrent.Executors;
 
@@ -22,7 +28,10 @@ public class Application {
         Program loop start.
          */
         FileTree startFileTree = FileTreeBuilder.build(HOME_PATH);
-        InputController inputController = new InputController(startFileTree);
+        MenuController menuController = new MenuController(new MenuOperationsView());
+        InputController inputController = new InputController(
+                startFileTree, new FileTreeView(), new GreetingView(),
+                new MenuView(), new ErrorView(), menuController);
         inputController.start();
     }
 }

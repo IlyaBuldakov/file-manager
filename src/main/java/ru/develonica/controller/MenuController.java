@@ -23,9 +23,13 @@ public class MenuController {
 
     private static final char DELETE_BUTTON = MenuButtons.DELETE_BUTTON.getSymbol();
 
-    private final MenuOperationsView menuOperationsView = new MenuOperationsView();
+    private final MenuOperationsView menuOperationsView;
 
     private final ErrorView errorView = new ErrorView();
+
+    public MenuController(MenuOperationsView menuOperationsView) {
+        this.menuOperationsView = menuOperationsView;
+    }
 
     /**
      * Menu handle method.
