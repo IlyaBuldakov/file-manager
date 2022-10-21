@@ -1,5 +1,7 @@
 package ru.develonica.service;
 
+import ru.develonica.view.ErrorView;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -15,6 +17,8 @@ import java.util.concurrent.ExecutorService;
 public class ThreadPoolSizeHandler implements SizeHandler {
 
     private final ExecutorService threadPool;
+
+    private final ErrorView errorView = new ErrorView();
 
     public ThreadPoolSizeHandler(ExecutorService threadPool) {
         this.threadPool = threadPool;
@@ -33,8 +37,10 @@ public class ThreadPoolSizeHandler implements SizeHandler {
                     cfList.add(CompletableFuture.supplyAsync(() -> {
                         try {
                             return activate(file);
-                        } catch (ExecutionException | InterruptedException | IOException e) {
-                            throw new RuntimeException(e);
+                        } catch (ExecutionException
+                                 | InterruptedException | IOException exception) {
+                            this.errorView.proceed(exception);
+                            return 0f;
                         }
                     }, threadPool));
                 }
