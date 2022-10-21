@@ -45,14 +45,14 @@ public final class FileTreeBuilder {
      * @return List of {@link Information information}.
      */
     public static LinkedList<Information> createInfoList(File[] files) {
-        int total = files.length * 10;
+        int total = files.length;
         LinkedList<Information> infoList = new LinkedList<>();
-        int progressCounter = 10;
+        int progressCounter = 1;
         for (int i = 0; i < files.length; i++) {
             Information info = new Information(files[i], i + 1);
             infoList.add(info);
             PROGRESS_BAR_VIEW.proceed(progressCounter, total);
-            progressCounter += 10;
+            progressCounter++;
         }
         return infoList;
     }

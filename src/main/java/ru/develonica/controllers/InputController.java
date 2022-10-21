@@ -13,6 +13,7 @@ import ru.develonica.views.MenuView;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.nio.file.Path;
 
 /**
  * Controller interacting with the user.
@@ -65,7 +66,7 @@ public class InputController {
                 try {
                     handleIdInput(Integer.parseInt(input));
                     refreshOutput();
-                } catch (NumberFormatException ex) {
+                } catch (NumberFormatException exception) {
                     this.fileTree = FileTreeBuilder.build(input);
                     refreshOutput();
                 }
@@ -91,10 +92,11 @@ public class InputController {
      */
     private void handleIdInput(int id) throws IOException {
         Information fileInfo = this.fileTree.getTree().get(id - 1);
+        Path filePath = fileInfo.getPath();
         if (fileInfo.getType().equals(Type.DIR)) {
-            this.fileTree = FileTreeBuilder.build(fileInfo.getPath().toString());
+            this.fileTree = FileTreeBuilder.build(filePath.toString());
         } else {
-            FileCalculator.openFile(fileInfo.getPath().toFile());
+            FileCalculator.openFile(filePath.toFile());
         }
     }
 }
