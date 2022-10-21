@@ -16,10 +16,14 @@ public class SizeConverter {
      * @return Converted string.
      */
     public static String convert(float input) {
-        // Division by 1024 counter.
+        // Division by 1024 counter
         int counter = 0;
-        while (input > 1024) {
-            input /= 1024;
+        // Division step. Examples with input 2048:
+        // 1024 / capacity = 1 (MB)
+        // 2048 / capacity = 2 (MB)
+        int capacity = 1024;
+        while (input > capacity) {
+            input /= capacity;
             counter++;
         }
         return String.format("%.2f " + MEASURES[counter], input);
