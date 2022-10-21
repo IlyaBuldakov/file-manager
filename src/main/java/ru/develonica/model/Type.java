@@ -12,14 +12,29 @@ import java.nio.file.Path;
  */
 public enum Type {
 
+    /**
+     * Image type (like PNG, JPG, etc.).
+     */
     IMAGE,
 
+    /**
+     * Video type (like MP4, AVI, etc.).
+     */
     VIDEO,
 
+    /**
+     * Text type (like XML, TXT, etc.).
+     */
     TEXT,
 
+    /**
+     * Other types of file.
+     */
     OTHER,
 
+    /**
+     * Directory.
+     */
     DIR;
 
     private static final ErrorView ERROR_VIEW = new ErrorView();
