@@ -65,14 +65,19 @@ public class InputController {
                     continue;
                 }
                 try {
-                    handleIdInput(Integer.parseInt(input));
-                    refreshOutput();
+                    int id = Integer.parseInt(input);
+                    if (id <= fileTree.getTree().size() && id > 0) {
+                        handleIdInput(id);
+                        refreshOutput();
+                    } else {
+                        this.errorView.proceed(new IndexOutOfBoundsException());
+                    }
                 } catch (NumberFormatException exception) {
                     this.fileTree = FileTreeBuilder.build(input);
                     refreshOutput();
                 }
             }
-        } catch (IndexOutOfBoundsException | IOException exception) {
+        } catch (IOException exception) {
             this.errorView.proceed(exception);
         }
     }
