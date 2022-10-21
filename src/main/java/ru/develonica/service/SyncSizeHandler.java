@@ -3,6 +3,9 @@ package ru.develonica.service;
 import java.io.File;
 import java.nio.file.Files;
 
+/**
+ * Sync {@link SizeHandler} implementation.
+ */
 public class SyncSizeHandler implements SizeHandler {
 
     @Override

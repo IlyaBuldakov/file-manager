@@ -11,6 +11,11 @@ public final class FileTreeView {
 
     private static final String FILE_TREE_ENDING = "=== File tree %s === \n";
 
+    /**
+     * Method outputs file tree.
+     *
+     * @param fileTree {@link FileTree}.
+     */
     public void proceed(FileTree fileTree) {
         List<Information> infoList = fileTree.getTree();
         for (Information info : infoList) {

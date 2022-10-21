@@ -11,6 +11,9 @@ public final class MenuView {
             [-] - remove dir/file by ID.
              """;
 
+    /**
+     * Method outputs menu message.
+     */
     public void proceed() {
         System.out.println(MENU_MESSAGE);
     }

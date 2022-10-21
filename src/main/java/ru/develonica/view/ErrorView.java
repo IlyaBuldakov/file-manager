@@ -10,6 +10,11 @@ import java.nio.file.Path;
  */
 public final class ErrorView {
 
+    /**
+     * Method outputs error message by resolving exception.
+     *
+     * @param exception Exception input.
+     */
     public void proceed(Exception exception) {
         switch (exception) {
             case IndexOutOfBoundsException outOfBounds -> System.err.println(Message.OUT_OF_BOUNDS.getText());

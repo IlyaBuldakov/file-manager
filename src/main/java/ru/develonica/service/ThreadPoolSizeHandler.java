@@ -9,6 +9,9 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 
+/**
+ * Multithreading (thread pool) {@link SizeHandler} implementation.
+ */
 public class ThreadPoolSizeHandler implements SizeHandler {
 
     private final ExecutorService threadPool;
