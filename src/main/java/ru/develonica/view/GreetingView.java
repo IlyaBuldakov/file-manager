@@ -2,7 +2,7 @@ package ru.develonica.view;
 
 public final class GreetingView {
 
-    private static final String greetingMessage = """
+    private static final String GREETING_MESSAGE = """
              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
              **** Welcome! Here is your home path *********
              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -17,7 +17,7 @@ public final class GreetingView {
      * program starts before interacting with the user.
      */
     public void greetingPage() {
-        System.out.println(greetingMessage);
+        System.out.println(GREETING_MESSAGE);
     }
 
     /**

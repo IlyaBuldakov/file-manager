@@ -5,13 +5,13 @@ package ru.develonica.view;
  */
 public final class MenuView {
 
-    private static final String menuMessage = """
+    private static final String MENU_MESSAGE = """
             [B] - back to parent directory.
             [+] - create NEW directory in CURRENT folder.
             [-] - remove dir/file by ID.
              """;
 
     public void proceed() {
-        System.out.println(menuMessage);
+        System.out.println(MENU_MESSAGE);
     }
 }
