@@ -16,9 +16,9 @@ public final class ProgressBarView {
         if (done > total) {
             throw new IllegalArgumentException();
         }
-        int finish = 100;
-        int donePercents = (finish * done) / total;
-        int doneLength = size * donePercents / finish;
+        int ratio = 100;
+        int donePercents = (ratio * done) / total;
+        int doneLength = size * donePercents / ratio;
 
         StringBuilder bar = new StringBuilder();
         for (int i = 0; i < size; i++) {
