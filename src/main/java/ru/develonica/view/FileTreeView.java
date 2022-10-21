@@ -34,8 +34,8 @@ public final class FileTreeView {
         }
 
         System.out.printf(FILE_TREE_ENDING, fileTree.getHeadName());
-        System.out.println("Total size: " + SizeConverter.convert(fileTree.getTotalSize()));
-        System.out.println("Total count: " + fileTree.getTotalCount());
+        System.out.printf("Total size: %s", SizeConverter.convert(fileTree.getTotalSize()));
+        System.out.printf("Total count: %s", fileTree.getTotalCount());
         System.out.println("Enter path/number of directory or use hotkeys.");
     }
 }
