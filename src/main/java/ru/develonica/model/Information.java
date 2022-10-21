@@ -1,6 +1,6 @@
 package ru.develonica.model;
 
-import ru.develonica.util.FileCalculator;
+import ru.develonica.util.FileOperationsUtil;
 
 import java.io.File;
 import java.nio.file.Path;
@@ -49,8 +49,8 @@ public class Information {
     public Information(File file, int number) {
         this.objName = file.getName();
         this.type = Type.getType(file);
-        this.count = FileCalculator.calculateCount(file);
-        this.size = FileCalculator.calculateSize(file);
+        this.count = FileOperationsUtil.calculateCount(file);
+        this.size = FileOperationsUtil.calculateSize(file);
         this.path = file.toPath();
         this.number = number;
     }

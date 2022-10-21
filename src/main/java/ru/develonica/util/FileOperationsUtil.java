@@ -16,7 +16,7 @@ import java.util.concurrent.ExecutorService;
 /**
  * Utility class for work with files.
  */
-public final class FileCalculator {
+public final class FileOperationsUtil {
 
     /*
       Initializing size handler.
@@ -56,6 +56,12 @@ public final class FileCalculator {
         return 0;
     }
 
+    /**
+     * Method that calculates count of objects in directory.
+     *
+     * @param file Destination to be calculated.
+     * @return Count of objects in directory.
+     */
     public static int calculateCount(File file) {
         if (file.isDirectory()) {
             File[] files = file.listFiles();
@@ -68,6 +74,12 @@ public final class FileCalculator {
         return 1;
     }
 
+    /**
+     * Method that opens file.
+     *
+     * @param file File to be opened.
+     * @throws IOException Exception.
+     */
     public static void openFile(File file) throws IOException {
         Desktop desktop = Desktop.getDesktop();
         desktop.open(file);

@@ -4,7 +4,7 @@ import ru.develonica.model.FileTree;
 import ru.develonica.model.Information;
 import ru.develonica.model.MenuButtons;
 import ru.develonica.model.Type;
-import ru.develonica.util.FileCalculator;
+import ru.develonica.util.FileOperationsUtil;
 import ru.develonica.util.FileTreeBuilder;
 import ru.develonica.view.ErrorView;
 import ru.develonica.view.FileTreeView;
@@ -97,7 +97,7 @@ public class InputController {
         if (fileInfo.getType().equals(Type.DIR)) {
             this.fileTree = FileTreeBuilder.build(filePath.toString());
         } else {
-            FileCalculator.openFile(filePath.toFile());
+            FileOperationsUtil.openFile(filePath.toFile());
         }
     }
 }
