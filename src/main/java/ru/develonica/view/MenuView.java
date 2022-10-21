@@ -15,6 +15,6 @@ public final class MenuView {
      * Method outputs menu message.
      */
     public void proceed() {
-        System.out.println(MENU_MESSAGE);
+        System.out.print(MENU_MESSAGE);
     }
 }
