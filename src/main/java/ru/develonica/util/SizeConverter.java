@@ -1,9 +1,9 @@
-package ru.develonica.service;
+package ru.develonica.util;
 
 /**
  * Converter to KB/MB/GB/TB (or BYTES, if value less than 1024).
  */
-public class SizeConverter {
+public final class SizeConverter {
 
     public static final String[] MEASURES = new String[] {
             "BYTES", "KB", "MB", "GB", "TB"
