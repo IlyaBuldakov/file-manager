@@ -1,7 +1,9 @@
 package ru.develonica.util;
 
 import ru.develonica.models.Message;
+import ru.develonica.models.ThreadPoolHolder;
 import ru.develonica.services.SizeHandler;
+import ru.develonica.services.SyncSizeHandler;
 import ru.develonica.services.ThreadPoolSizeHandler;
 import ru.develonica.views.ErrorView;
 
@@ -9,16 +11,29 @@ import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.util.concurrent.ExecutionException;
+import java.util.Optional;
+import java.util.concurrent.ExecutorService;
 
 /**
  * Utility class for work with files.
  */
 public final class FileCalculator {
 
-    private static final SizeHandler sizeHandler = new ThreadPoolSizeHandler();
+    /*
+      Initializing size handler.
+     */
+    static {
+        Optional<ExecutorService> threadPool = ThreadPoolHolder.getInstance();
+        if (threadPool.isPresent()) {
+            SIZE_HANDLER = new ThreadPoolSizeHandler(threadPool.get());
+        } else {
+            SIZE_HANDLER = new SyncSizeHandler();
+        }
+    }
 
-    private static final ErrorView errorView = new ErrorView();
+    private static final SizeHandler SIZE_HANDLER;
+
+    private static final ErrorView ERROR_VIEW = new ErrorView();
 
     /**
      * Size calculation method.
@@ -30,14 +45,14 @@ public final class FileCalculator {
         try {
             if (file.isDirectory()) {
                 try {
-                    return sizeHandler.activate(file);
-                } catch (ExecutionException | InterruptedException e) {
-                    errorView.proceed(Message.INTERNAL_ERROR);
+                    return SIZE_HANDLER.activate(file);
+                } catch (Exception e) {
+                    ERROR_VIEW.proceed(Message.INTERNAL_ERROR);
                 }
             }
             return Files.size(file.toPath());
         } catch (IOException exception) {
-            errorView.proceed(Message.IO_ERROR);
+            ERROR_VIEW.proceed(Message.IO_ERROR);
         }
         return 0;
     }

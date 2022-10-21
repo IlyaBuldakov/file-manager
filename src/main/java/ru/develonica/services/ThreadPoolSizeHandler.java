@@ -8,12 +8,16 @@ import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 public class ThreadPoolSizeHandler implements SizeHandler {
 
-    private static final ExecutorService threadPool = Executors.newCachedThreadPool();
+    private final ExecutorService threadPool;
 
+    public ThreadPoolSizeHandler(ExecutorService threadPool) {
+        this.threadPool = threadPool;
+    }
+
+    @Override
     public float activate(File destination) throws ExecutionException, InterruptedException, IOException {
         File[] files = destination.listFiles();
         float filesSize = 0f;
