@@ -43,7 +43,7 @@ public class MenuController {
         if (upperCaseInput == CREATE_BUTTON) {
             this.menuOperationsView.enterNameForNewObj();
             String dirName = new Scanner(System.in).nextLine();
-            Path path = Path.of(tree.getTreePath().toString() + "/" + dirName);
+            Path path = Path.of("%s/%s".formatted(tree.getTreePath().toString(), dirName));
             Files.createDirectories(path);
             this.menuOperationsView.createSuccess();
             // Rebuild tree with new directory.
