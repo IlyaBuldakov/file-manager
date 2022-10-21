@@ -15,7 +15,7 @@ public final class SizeConverter {
      * @param input Value to convert.
      * @return Converted string.
      */
-    public static String convert(float input) {
+    public static String convert(double input) {
         // Division by 1024 counter
         int counter = 0;
         // Division step. Examples with input 2048:

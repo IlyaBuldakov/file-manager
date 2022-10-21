@@ -9,9 +9,9 @@ import java.nio.file.Files;
 public class SyncSizeHandler implements SizeHandler {
 
     @Override
-    public float activate(File destination) throws Exception {
+    public double activate(File destination) throws Exception {
         File[] files = destination.listFiles();
-        float filesSize = 0f;
+        double filesSize = 0f;
         if (files != null && files.length != 0) {
             for (File file : files) {
                 if (file.isFile()) {

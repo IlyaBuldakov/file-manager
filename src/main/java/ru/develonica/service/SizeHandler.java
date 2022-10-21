@@ -14,5 +14,5 @@ public interface SizeHandler {
      * @return Size value.
      * @throws Exception Exception.
      */
-    float activate(File destination) throws Exception;
+    double activate(File destination) throws Exception;
 }

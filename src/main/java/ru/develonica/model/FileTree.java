@@ -27,7 +27,7 @@ public class FileTree {
     /**
      * Total size of all objects in file tree.
      */
-    private final float totalSize;
+    private final double totalSize;
 
     /**
      * Total count of all objects.
@@ -45,7 +45,7 @@ public class FileTree {
         this.tree = infoList;
         this.treePath = treePath;
         this.headName = headName;
-        this.totalSize = infoList.stream().map(Information::getSize).reduce(0f, Float::sum);
+        this.totalSize = infoList.stream().map(Information::getSize).reduce(0d, Double::sum);
         this.totalCount = infoList.size();
     }
 
@@ -71,7 +71,7 @@ public class FileTree {
         return headName;
     }
 
-    public float getTotalSize() {
+    public double getTotalSize() {
         return totalSize;
     }
 

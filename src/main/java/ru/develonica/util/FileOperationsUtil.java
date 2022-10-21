@@ -40,7 +40,7 @@ public final class FileOperationsUtil {
      * @param file File.
      * @return Size.
      */
-    public static float calculateSize(File file) {
+    public static double calculateSize(File file) {
         try {
             if (file.isDirectory()) {
                 try {

@@ -25,11 +25,11 @@ public class ThreadPoolSizeHandler implements SizeHandler {
     }
 
     @Override
-    public float activate(File destination) throws ExecutionException, InterruptedException, IOException {
+    public double activate(File destination) throws ExecutionException, InterruptedException, IOException {
         File[] files = destination.listFiles();
-        float filesSize = 0f;
+        double filesSize = 0f;
         if (files != null && files.length != 0) {
-            List<CompletableFuture<Float>> cfList = new ArrayList<>();
+            List<CompletableFuture<Double>> cfList = new ArrayList<>();
             for (File file : files) {
                 if (file.isFile()) {
                     filesSize += Files.size(file.toPath());
@@ -40,13 +40,13 @@ public class ThreadPoolSizeHandler implements SizeHandler {
                         } catch (ExecutionException
                                  | InterruptedException | IOException exception) {
                             this.errorView.proceed(exception);
-                            return 0f;
+                            return 0d;
                         }
                     }, threadPool));
                 }
             }
             CompletableFuture.allOf(cfList.toArray(CompletableFuture[]::new)).join();
-            filesSize += cfList.stream().map(CompletableFuture::join).reduce(0f, Float::sum);
+            filesSize += cfList.stream().map(CompletableFuture::join).reduce(0d, Double::sum);
         }
         return filesSize;
     }

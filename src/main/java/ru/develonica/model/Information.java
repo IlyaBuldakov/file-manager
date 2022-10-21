@@ -23,7 +23,7 @@ public class Information {
     /**
      * Size of object.
      */
-    private final float size;
+    private final double size;
 
     /**
      * Count of objects.
@@ -63,7 +63,7 @@ public class Information {
         return type;
     }
 
-    public float getSize() {
+    public double getSize() {
         return size;
     }
 
