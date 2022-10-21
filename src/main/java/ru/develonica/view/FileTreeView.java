@@ -1,9 +1,9 @@
-package ru.develonica.views;
+package ru.develonica.view;
 
-import ru.develonica.models.FileTree;
-import ru.develonica.models.Information;
-import ru.develonica.models.Type;
-import ru.develonica.services.SizeConverter;
+import ru.develonica.model.FileTree;
+import ru.develonica.model.Information;
+import ru.develonica.model.Type;
+import ru.develonica.service.SizeConverter;
 
 import java.util.List;
 

@@ -1,11 +1,10 @@
 package ru.develonica.util;
 
-import ru.develonica.models.Message;
-import ru.develonica.models.ThreadPoolHolder;
-import ru.develonica.services.SizeHandler;
-import ru.develonica.services.SyncSizeHandler;
-import ru.develonica.services.ThreadPoolSizeHandler;
-import ru.develonica.views.ErrorView;
+import ru.develonica.model.ThreadPoolHolder;
+import ru.develonica.service.SizeHandler;
+import ru.develonica.service.SyncSizeHandler;
+import ru.develonica.service.ThreadPoolSizeHandler;
+import ru.develonica.view.ErrorView;
 
 import java.awt.Desktop;
 import java.io.File;

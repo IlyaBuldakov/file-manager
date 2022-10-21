@@ -1,8 +1,8 @@
 package ru.develonica.util;
 
-import ru.develonica.models.FileTree;
-import ru.develonica.models.Information;
-import ru.develonica.views.ProgressBarView;
+import ru.develonica.model.FileTree;
+import ru.develonica.model.Information;
+import ru.develonica.view.ProgressBarView;
 
 import java.io.File;
 import java.nio.file.Path;

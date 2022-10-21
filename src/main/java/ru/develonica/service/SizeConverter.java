@@ -1,4 +1,4 @@
-package ru.develonica.services;
+package ru.develonica.service;
 
 /**
  * Converter to KB/MB/GB/TB (or BYTES, if value less than 1024).

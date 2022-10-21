@@ -1,4 +1,4 @@
-package ru.develonica.views;
+package ru.develonica.view;
 
 /**
  * View that displays menu.

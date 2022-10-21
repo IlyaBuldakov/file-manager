@@ -1,6 +1,6 @@
-package ru.develonica.models;
+package ru.develonica.model;
 
-import ru.develonica.views.ErrorView;
+import ru.develonica.view.ErrorView;
 
 import java.io.File;
 import java.io.IOException;

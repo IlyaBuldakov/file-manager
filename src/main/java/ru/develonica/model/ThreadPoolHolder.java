@@ -1,4 +1,4 @@
-package ru.develonica.models;
+package ru.develonica.model;
 
 import java.util.Optional;
 import java.util.concurrent.ExecutorService;

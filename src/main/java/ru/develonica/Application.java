@@ -1,8 +1,8 @@
 package ru.develonica;
 
-import ru.develonica.controllers.InputController;
-import ru.develonica.models.FileTree;
-import ru.develonica.models.ThreadPoolHolder;
+import ru.develonica.controller.InputController;
+import ru.develonica.model.FileTree;
+import ru.develonica.model.ThreadPoolHolder;
 import ru.develonica.util.FileTreeBuilder;
 
 import java.util.concurrent.Executors;

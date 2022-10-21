@@ -1,4 +1,4 @@
-package ru.develonica.services;
+package ru.develonica.service;
 
 import java.io.File;
 

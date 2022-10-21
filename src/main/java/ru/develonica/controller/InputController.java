@@ -1,14 +1,14 @@
-package ru.develonica.controllers;
+package ru.develonica.controller;
 
-import ru.develonica.models.FileTree;
-import ru.develonica.models.Information;
-import ru.develonica.models.Type;
+import ru.develonica.model.FileTree;
+import ru.develonica.model.Information;
+import ru.develonica.model.Type;
 import ru.develonica.util.FileCalculator;
 import ru.develonica.util.FileTreeBuilder;
-import ru.develonica.views.ErrorView;
-import ru.develonica.views.FileTreeView;
-import ru.develonica.views.GreetingView;
-import ru.develonica.views.MenuView;
+import ru.develonica.view.ErrorView;
+import ru.develonica.view.FileTreeView;
+import ru.develonica.view.GreetingView;
+import ru.develonica.view.MenuView;
 
 import java.io.BufferedReader;
 import java.io.IOException;

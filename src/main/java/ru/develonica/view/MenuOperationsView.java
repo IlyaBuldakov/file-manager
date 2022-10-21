@@ -1,4 +1,4 @@
-package ru.develonica.views;
+package ru.develonica.view;
 
 public final class MenuOperationsView {
 

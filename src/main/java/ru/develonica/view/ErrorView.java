@@ -1,6 +1,6 @@
-package ru.develonica.views;
+package ru.develonica.view;
 
-import ru.develonica.models.Message;
+import ru.develonica.model.Message;
 
 import java.io.IOException;
 import java.nio.file.Path;
