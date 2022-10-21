@@ -2,6 +2,7 @@ package ru.develonica.controller;
 
 import ru.develonica.model.FileTree;
 import ru.develonica.model.Information;
+import ru.develonica.model.MenuButtons;
 import ru.develonica.model.Type;
 import ru.develonica.util.FileCalculator;
 import ru.develonica.util.FileTreeBuilder;
@@ -57,8 +58,8 @@ public class InputController {
                 }
                 if (input.length() == 1
                         && (Character.isAlphabetic(input.charAt(0))
-                        || input.charAt(0) == '+'
-                        || input.charAt(0) == '-')) {
+                        || input.charAt(0) == MenuButtons.CREATE_BUTTON.getSymbol()
+                        || input.charAt(0) == MenuButtons.DELETE_BUTTON.getSymbol())) {
                     this.fileTree = this.menuController.handleMenu(this.fileTree, input.charAt(0));
                     refreshOutput();
                     continue;
