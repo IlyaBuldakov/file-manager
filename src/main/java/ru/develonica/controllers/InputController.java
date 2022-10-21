@@ -2,7 +2,6 @@ package ru.develonica.controllers;
 
 import ru.develonica.models.FileTree;
 import ru.develonica.models.Information;
-import ru.develonica.models.Message;
 import ru.develonica.models.Type;
 import ru.develonica.util.FileCalculator;
 import ru.develonica.util.FileTreeBuilder;
@@ -71,13 +70,14 @@ public class InputController {
                     refreshOutput();
                 }
             }
-        } catch (IndexOutOfBoundsException exception) {
-            this.errorView.proceed(Message.OUT_OF_BOUNDS);
-        } catch (IOException exception) {
-            this.errorView.proceed(Message.IO_ERROR);
+        } catch (IndexOutOfBoundsException | IOException exception) {
+            this.errorView.proceed(exception);
         }
     }
 
+    /**
+     * Calls views to display file tree and menu.
+     */
     private void refreshOutput() {
         this.fileTreeView.proceed(this.fileTree);
         this.menuView.proceed();

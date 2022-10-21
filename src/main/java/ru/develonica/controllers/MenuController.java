@@ -1,7 +1,6 @@
 package ru.develonica.controllers;
 
 import ru.develonica.models.FileTree;
-import ru.develonica.models.Message;
 import ru.develonica.util.FileTreeBuilder;
 import ru.develonica.views.ErrorView;
 import ru.develonica.views.MenuOperationsView;
@@ -40,20 +39,21 @@ public class MenuController {
             case BACK_BUTTON:
                 return FileTreeBuilder.build(parent.toString());
             case CREATE_BUTTON:
-                menuOperationsView.enterNameForNewObj();
+                this.menuOperationsView.enterNameForNewObj();
                 String dirName = new Scanner(System.in).nextLine();
                 Path path = Path.of(tree.getTreePath().toString() + "/" + dirName);
                 Files.createDirectories(path);
-                menuOperationsView.createSuccess();
+                this.menuOperationsView.createSuccess();
                 // Rebuild tree with new directory.
                 return FileTreeBuilder.build(tree.getTreePath().toString());
             case DELETE_BUTTON:
-                menuOperationsView.enterIdToDelete();
+                this.menuOperationsView.enterIdToDelete();
                 int id = Integer.parseInt(new Scanner(System.in).nextLine());
-                if (Files.deleteIfExists(tree.getTree().get(id - 1).getPath())) {
-                    menuOperationsView.deleteSuccess();
+                Path pathToDelete = tree.getTree().get(id - 1).getPath();
+                if (Files.deleteIfExists(pathToDelete)) {
+                    this.menuOperationsView.deleteSuccess();
                 } else {
-                    errorView.proceed(Message.IO_ERROR);
+                    this.errorView.proceedNotFoundPath(pathToDelete);
                 }
                 // Rebuild tree without deleted dir/file.
                 return FileTreeBuilder.build(tree.getTreePath().toString());

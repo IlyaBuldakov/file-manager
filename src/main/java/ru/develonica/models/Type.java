@@ -35,7 +35,7 @@ public enum Type {
             String type = Files.probeContentType(file.toPath());
             return type == null ? DIR : Type.parseType(type);
         } catch (IOException exception) {
-            ERROR_VIEW.proceed(Message.IO_ERROR);
+            ERROR_VIEW.proceed(exception);
         }
         return DIR;
     }

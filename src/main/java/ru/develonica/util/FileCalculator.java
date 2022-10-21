@@ -46,13 +46,13 @@ public final class FileCalculator {
             if (file.isDirectory()) {
                 try {
                     return SIZE_HANDLER.activate(file);
-                } catch (Exception e) {
-                    ERROR_VIEW.proceed(Message.INTERNAL_ERROR);
+                } catch (Exception exception) {
+                    ERROR_VIEW.proceed(exception);
                 }
             }
             return Files.size(file.toPath());
         } catch (IOException exception) {
-            ERROR_VIEW.proceed(Message.IO_ERROR);
+            ERROR_VIEW.proceed(exception);
         }
         return 0;
     }
