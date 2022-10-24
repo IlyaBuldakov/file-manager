@@ -38,7 +38,7 @@ public final class FileOperationsUtil {
      * Size calculation method.
      *
      * @param file File.
-     * @return Size.
+     * @return Size or -1.
      */
     public static long calculateSize(File file) {
         try {
@@ -49,7 +49,7 @@ public final class FileOperationsUtil {
         } catch (Exception exception) {
             ERROR_VIEW.proceed(exception);
         }
-        return 0;
+        return -1;
     }
 
     /**
