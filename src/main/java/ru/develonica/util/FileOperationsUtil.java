@@ -6,7 +6,7 @@ import ru.develonica.service.SyncSizeHandler;
 import ru.develonica.service.ThreadPoolSizeHandler;
 import ru.develonica.view.ErrorView;
 
-import java.awt.Desktop;
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -43,14 +43,10 @@ public final class FileOperationsUtil {
     public static double calculateSize(File file) {
         try {
             if (file.isDirectory()) {
-                try {
-                    return SIZE_HANDLER.activate(file);
-                } catch (Exception exception) {
-                    ERROR_VIEW.proceed(exception);
-                }
+                return SIZE_HANDLER.activate(file);
             }
             return Files.size(file.toPath());
-        } catch (IOException exception) {
+        } catch (Exception exception) {
             ERROR_VIEW.proceed(exception);
         }
         return 0;
