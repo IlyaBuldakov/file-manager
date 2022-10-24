@@ -15,7 +15,7 @@ public final class SizeConverter {
      * @param input Value to convert.
      * @return Converted string.
      */
-    public static String convert(double input) {
+    public static String convert(long input) {
         // Division by 1024 counter
         int counter = 0;
         // Division step. Examples with input 2048:
@@ -26,6 +26,6 @@ public final class SizeConverter {
             input /= capacity;
             counter++;
         }
-        return String.format("%.2f " + MEASURES[counter], input);
+        return String.format("%d %s ", input, MEASURES[counter]);
     }
 }

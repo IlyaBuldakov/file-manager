@@ -40,7 +40,7 @@ public final class FileOperationsUtil {
      * @param file File.
      * @return Size.
      */
-    public static double calculateSize(File file) {
+    public static long calculateSize(File file) {
         try {
             if (file.isDirectory()) {
                 return SIZE_HANDLER.activate(file);

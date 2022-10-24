@@ -23,7 +23,7 @@ public class Information {
     /**
      * Size of object.
      */
-    private final double size;
+    private final long size;
 
     /**
      * Count of objects.
@@ -63,7 +63,7 @@ public class Information {
         return type;
     }
 
-    public double getSize() {
+    public long getSize() {
         return size;
     }
 

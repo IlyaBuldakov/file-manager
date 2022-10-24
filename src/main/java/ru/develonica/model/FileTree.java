@@ -27,7 +27,7 @@ public class FileTree {
     /**
      * Total size of all objects in file tree.
      */
-    private final double totalSize;
+    private final long totalSize;
 
     /**
      * Total count of all objects.
@@ -45,7 +45,7 @@ public class FileTree {
         this.tree = infoList;
         this.treePath = treePath;
         this.headName = headName;
-        this.totalSize = infoList.stream().map(Information::getSize).reduce(0d, Double::sum);
+        this.totalSize = infoList.stream().map(Information::getSize).reduce(0L, Long::sum);
         this.totalCount = infoList.size();
     }
 
@@ -56,7 +56,7 @@ public class FileTree {
         this.tree = Collections.emptyList();
         this.treePath = treePath;
         this.headName = headName;
-        this.totalSize = 0f;
+        this.totalSize = 0L;
     }
 
     public List<Information> getTree() {
@@ -71,7 +71,7 @@ public class FileTree {
         return headName;
     }
 
-    public double getTotalSize() {
+    public long getTotalSize() {
         return totalSize;
     }
 
