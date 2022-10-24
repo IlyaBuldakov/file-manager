@@ -56,8 +56,9 @@ public class FileTreeBuilder {
         int progressCounter = 1;
         for (int i = 0; i < files.length; i++) {
             Information info = new Information(files[i], i + 1);
-            info.setSize(fileOperationsHandler.calculateSize(files[i]));
-            info.setCount(fileOperationsHandler.calculateCount(files[i]));
+            info.setSizeAndCount(
+                    fileOperationsHandler.calculateSize(files[i]),
+                    fileOperationsHandler.calculateCount(files[i]));
             infoList.add(info);
             this.progressBarView.proceed(progressCounter, total);
             progressCounter++;

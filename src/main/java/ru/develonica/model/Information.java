@@ -51,11 +51,8 @@ public class Information {
         this.number = number;
     }
 
-    public void setSize(long size) {
+    public void setSizeAndCount(long size, int count) {
         this.size = size;
-    }
-
-    public void setCount(int count) {
         this.count = count;
     }
 
