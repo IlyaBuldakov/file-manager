@@ -63,13 +63,9 @@ public class InputController {
                     break;
                 }
                 if (Validator.isMenuButton(input)) {
-                    try {
-                        this.fileTree = this.menuController.handleMenu(this.fileTree, input.charAt(0));
-                        refreshOutput();
-                        continue;
-                    } catch (Throwable throwable) {
-                        this.errorView.proceed(throwable);
-                    }
+                    this.fileTree = this.menuController.handleMenu(this.fileTree, input.charAt(0));
+                    refreshOutput();
+                    continue;
                 }
                 try {
                     int id = Integer.parseInt(input);

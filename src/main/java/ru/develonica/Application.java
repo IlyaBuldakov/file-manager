@@ -28,10 +28,11 @@ public class Application {
         Program loop start.
          */
         FileTree startFileTree = FileTreeBuilder.build(HOME_PATH);
-        MenuController menuController = new MenuController(new MenuOperationsView());
+        ErrorView errorView = new ErrorView();
+        MenuController menuController = new MenuController(new MenuOperationsView(), errorView);
         InputController inputController = new InputController(
                 startFileTree, new FileTreeView(), new GreetingView(),
-                new MenuView(), new ErrorView(), menuController);
+                new MenuView(), errorView, menuController);
         inputController.start();
     }
 }

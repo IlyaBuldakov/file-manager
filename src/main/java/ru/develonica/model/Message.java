@@ -21,7 +21,9 @@ public enum Message {
      */
     OUT_OF_BOUNDS("Incorrect number. Please, check your input."),
 
-    ILLEGAL_ARGUMENT("Incorrect input. Please, try again");
+    ILLEGAL_ARGUMENT("Incorrect input. Please, try again."),
+
+    FILE_NOT_FOUND("File not found.");
 
     /**
      * Error contents.
