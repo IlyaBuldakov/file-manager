@@ -1,6 +1,7 @@
 package ru.develonica.controller;
 
-import ru.develonica.model.*;
+import ru.develonica.model.Information;
+import ru.develonica.model.Type;
 import ru.develonica.model.file.FileOperationsHandler;
 import ru.develonica.model.file.FileTree;
 import ru.develonica.model.file.FileTreeBuilder;
@@ -61,33 +62,42 @@ public class InputController {
         try {
             this.greetingView.greetingPage();
             refreshOutput();
-            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-            while (true) {
-                String input = br.readLine();
-                greetingView.pleaseWait();
-                if (input.equalsIgnoreCase(EXIT_VALUE)) {
-                    break;
-                }
-                if (Validator.isMenuButton(input)) {
-                    this.fileTree = this.menuController.handleMenu(this.fileTree, input.charAt(0));
-                    refreshOutput();
-                    continue;
-                }
-                try {
-                    int id = Integer.parseInt(input);
-                    if (Validator.isObjectIdValid(this.fileTree, id)) {
-                        handleIdInput(id);
-                        refreshOutput();
-                    } else {
-                        this.errorView.proceed(new IndexOutOfBoundsException());
-                    }
-                } catch (NumberFormatException exception) {
-                    this.fileTree = fileTreeBuilder.build(input);
-                    refreshOutput();
-                }
-            }
+            runLifecycle();
         } catch (IOException exception) {
             this.errorView.proceed(exception);
+        }
+    }
+
+    /**
+     * Start program lifecycle in loop.
+     *
+     * @throws IOException Exception.
+     */
+    private void runLifecycle() throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        while (true) {
+            String input = reader.readLine();
+            greetingView.pleaseWait();
+            if (input.equalsIgnoreCase(EXIT_VALUE)) {
+                break;
+            }
+            if (Validator.isMenuButton(input)) {
+                this.fileTree = this.menuController.handleMenu(this.fileTree, input.charAt(0));
+                refreshOutput();
+                continue;
+            }
+            try {
+                int id = Integer.parseInt(input);
+                if (Validator.isObjectIdValid(this.fileTree, id)) {
+                    handleIdInput(id);
+                    refreshOutput();
+                } else {
+                    this.errorView.proceed(new IndexOutOfBoundsException());
+                }
+            } catch (NumberFormatException exception) {
+                this.fileTree = fileTreeBuilder.build(input);
+                refreshOutput();
+            }
         }
     }
 
