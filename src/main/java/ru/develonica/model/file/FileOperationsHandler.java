@@ -1,5 +1,6 @@
-package ru.develonica.model;
+package ru.develonica.model.file;
 
+import ru.develonica.model.ThreadPoolHolder;
 import ru.develonica.service.SizeHandler;
 import ru.develonica.service.SyncSizeHandler;
 import ru.develonica.service.ThreadPoolSizeHandler;

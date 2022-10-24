@@ -2,10 +2,10 @@ package ru.develonica;
 
 import ru.develonica.controller.InputController;
 import ru.develonica.controller.MenuController;
-import ru.develonica.model.FileOperationsHandler;
-import ru.develonica.model.FileTree;
+import ru.develonica.model.file.FileOperationsHandler;
+import ru.develonica.model.file.FileTree;
 import ru.develonica.model.ThreadPoolHolder;
-import ru.develonica.model.FileTreeBuilder;
+import ru.develonica.model.file.FileTreeBuilder;
 import ru.develonica.view.*;
 
 import java.util.concurrent.Executors;

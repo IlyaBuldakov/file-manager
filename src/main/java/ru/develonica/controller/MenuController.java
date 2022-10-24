@@ -1,8 +1,8 @@
 package ru.develonica.controller;
 
-import ru.develonica.model.FileTree;
+import ru.develonica.model.file.FileTree;
 import ru.develonica.model.MenuButtons;
-import ru.develonica.model.FileTreeBuilder;
+import ru.develonica.model.file.FileTreeBuilder;
 import ru.develonica.util.Validator;
 import ru.develonica.view.ErrorView;
 import ru.develonica.view.MenuOperationsView;

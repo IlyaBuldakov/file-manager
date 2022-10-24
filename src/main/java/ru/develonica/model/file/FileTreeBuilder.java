@@ -1,5 +1,6 @@
-package ru.develonica.model;
+package ru.develonica.model.file;
 
+import ru.develonica.model.Information;
 import ru.develonica.view.ProgressBarView;
 
 import java.io.File;

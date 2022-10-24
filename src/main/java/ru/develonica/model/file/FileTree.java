@@ -1,4 +1,6 @@
-package ru.develonica.model;
+package ru.develonica.model.file;
+
+import ru.develonica.model.Information;
 
 import java.nio.file.Path;
 import java.util.Collections;
