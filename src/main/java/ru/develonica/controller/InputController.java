@@ -1,10 +1,6 @@
 package ru.develonica.controller;
 
-import ru.develonica.model.FileTree;
-import ru.develonica.model.Information;
-import ru.develonica.model.Type;
-import ru.develonica.util.FileOperationsUtil;
-import ru.develonica.util.FileTreeBuilder;
+import ru.develonica.model.*;
 import ru.develonica.util.Validator;
 import ru.develonica.view.ErrorView;
 import ru.develonica.view.FileTreeView;
@@ -38,14 +34,21 @@ public class InputController {
 
     private final MenuController menuController;
 
+    private final FileOperationsHandler fileOperationsHandler;
+
+    private final FileTreeBuilder fileTreeBuilder;
+
     public InputController(FileTree fileTree, FileTreeView fileTreeView, GreetingView greetingView,
-                           MenuView menuView, ErrorView errorView, MenuController menuController) {
+                           MenuView menuView, ErrorView errorView, MenuController menuController,
+                           FileOperationsHandler fileOperationsHandler, FileTreeBuilder fileTreeBuilder) {
         this.fileTree = fileTree;
         this.fileTreeView = fileTreeView;
         this.greetingView = greetingView;
         this.menuView = menuView;
         this.errorView = errorView;
         this.menuController = menuController;
+        this.fileOperationsHandler = fileOperationsHandler;
+        this.fileTreeBuilder = fileTreeBuilder;
     }
 
     /**
@@ -76,7 +79,7 @@ public class InputController {
                         this.errorView.proceed(new IndexOutOfBoundsException());
                     }
                 } catch (NumberFormatException exception) {
-                    this.fileTree = FileTreeBuilder.build(input);
+                    this.fileTree = fileTreeBuilder.build(input);
                     refreshOutput();
                 }
             }
@@ -103,9 +106,9 @@ public class InputController {
         Information fileInfo = this.fileTree.getTree().get(id - 1);
         Path filePath = fileInfo.getPath();
         if (fileInfo.getType().equals(Type.DIR)) {
-            this.fileTree = FileTreeBuilder.build(filePath.toString());
+            this.fileTree = fileTreeBuilder.build(filePath.toString());
         } else {
-            FileOperationsUtil.openFile(filePath.toFile());
+            fileOperationsHandler.openFile(filePath.toFile());
         }
     }
 }

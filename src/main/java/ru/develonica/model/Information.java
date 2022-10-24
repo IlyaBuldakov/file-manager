@@ -1,7 +1,5 @@
 package ru.develonica.model;
 
-import ru.develonica.util.FileOperationsUtil;
-
 import java.io.File;
 import java.nio.file.Path;
 
@@ -23,12 +21,12 @@ public class Information {
     /**
      * Size of object.
      */
-    private final long size;
+    private long size;
 
     /**
      * Count of objects.
      */
-    private final int count;
+    private int count;
 
     /**
      * Object path.
@@ -49,10 +47,16 @@ public class Information {
     public Information(File file, int number) {
         this.objName = file.getName();
         this.type = Type.getType(file);
-        this.count = FileOperationsUtil.calculateCount(file);
-        this.size = FileOperationsUtil.calculateSize(file);
         this.path = file.toPath();
         this.number = number;
+    }
+
+    public void setSize(long size) {
+        this.size = size;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
     }
 
     public String getObjName() {

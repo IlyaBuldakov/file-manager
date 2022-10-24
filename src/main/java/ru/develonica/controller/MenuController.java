@@ -2,13 +2,12 @@ package ru.develonica.controller;
 
 import ru.develonica.model.FileTree;
 import ru.develonica.model.MenuButtons;
-import ru.develonica.util.FileTreeBuilder;
+import ru.develonica.model.FileTreeBuilder;
 import ru.develonica.util.Validator;
 import ru.develonica.view.ErrorView;
 import ru.develonica.view.MenuOperationsView;
 
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Scanner;
@@ -31,10 +30,13 @@ public class MenuController {
 
     private final ErrorView errorView;
 
+    private final FileTreeBuilder fileTreeBuilder;
+
     public MenuController(MenuOperationsView menuOperationsView,
-                          ErrorView errorView) {
+                          ErrorView errorView, FileTreeBuilder fileTreeBuilder) {
         this.menuOperationsView = menuOperationsView;
         this.errorView = errorView;
+        this.fileTreeBuilder = fileTreeBuilder;
     }
 
     /**
@@ -49,7 +51,7 @@ public class MenuController {
             Path parent = tree.getTreePath().getParent();
             final char upperCaseInput = Character.toUpperCase(inputButton);
             if (upperCaseInput == BACK_BUTTON) {
-                return FileTreeBuilder.build(parent.toString());
+                return fileTreeBuilder.build(parent.toString());
             }
             if (upperCaseInput == CREATE_BUTTON) {
                 this.menuOperationsView.enterNameForNewObj();
@@ -58,7 +60,7 @@ public class MenuController {
                 Files.createDirectories(path);
                 this.menuOperationsView.createSuccess();
                 // Rebuild tree with new directory.
-                return FileTreeBuilder.build(tree.getTreePath().toString());
+                return this.fileTreeBuilder.build(tree.getTreePath().toString());
             }
             if (upperCaseInput == DELETE_BUTTON) {
                 this.menuOperationsView.enterIdToDelete();
@@ -68,7 +70,7 @@ public class MenuController {
                     Files.delete(pathToDelete);
                     this.menuOperationsView.deleteSuccess();
                     // Rebuild tree without deleted dir/file.
-                    return FileTreeBuilder.build(tree.getTreePath().toString());
+                    return this.fileTreeBuilder.build(tree.getTreePath().toString());
                 } else {
                     this.errorView.proceed(new FileNotFoundException());
                 }
@@ -77,6 +79,6 @@ public class MenuController {
         } catch (Exception exception) {
             this.errorView.proceed(exception);
         }
-        return FileTreeBuilder.build(HOME_PATH);
+        return this.fileTreeBuilder.build(HOME_PATH);
     }
 }

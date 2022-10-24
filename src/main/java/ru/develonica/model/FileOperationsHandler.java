@@ -1,6 +1,5 @@
-package ru.develonica.util;
+package ru.develonica.model;
 
-import ru.develonica.model.ThreadPoolHolder;
 import ru.develonica.service.SizeHandler;
 import ru.develonica.service.SyncSizeHandler;
 import ru.develonica.service.ThreadPoolSizeHandler;
@@ -16,7 +15,7 @@ import java.util.concurrent.ExecutorService;
 /**
  * Utility class for work with files.
  */
-public final class FileOperationsUtil {
+public class FileOperationsHandler {
 
     /*
       Initializing size handler.
@@ -32,7 +31,11 @@ public final class FileOperationsUtil {
 
     private static final SizeHandler SIZE_HANDLER;
 
-    private static final ErrorView ERROR_VIEW = new ErrorView();
+    private final ErrorView errorView;
+
+    public FileOperationsHandler(ErrorView errorView) {
+        this.errorView = errorView;
+    }
 
     /**
      * Size calculation method.
@@ -40,14 +43,14 @@ public final class FileOperationsUtil {
      * @param file File.
      * @return Size or -1.
      */
-    public static long calculateSize(File file) {
+    public long calculateSize(File file) {
         try {
             if (file.isDirectory()) {
                 return SIZE_HANDLER.activate(file);
             }
             return Files.size(file.toPath());
         } catch (Exception exception) {
-            ERROR_VIEW.proceed(exception);
+            this.errorView.proceed(exception);
         }
         return -1;
     }
@@ -58,7 +61,7 @@ public final class FileOperationsUtil {
      * @param file Destination to be calculated.
      * @return Count of objects in directory.
      */
-    public static int calculateCount(File file) {
+    public int calculateCount(File file) {
         if (file.isDirectory()) {
             File[] files = file.listFiles();
             if (files != null) {
@@ -76,7 +79,7 @@ public final class FileOperationsUtil {
      * @param file File to be opened.
      * @throws IOException Exception.
      */
-    public static void openFile(File file) throws IOException {
+    public void openFile(File file) throws IOException {
         Desktop desktop = Desktop.getDesktop();
         desktop.open(file);
     }
