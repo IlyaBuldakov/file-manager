@@ -36,7 +36,7 @@ public class FileTree {
 
     private static final String HOME_PATH = System.getProperty("user.home");
 
-    private static final TypeResolver typeResolver = new TypeResolver();
+    private static final TypeResolver TYPE_RESOLVER = new TypeResolver();
 
     /**
      * File tree content.
@@ -102,7 +102,7 @@ public class FileTree {
             info.setSizeAndCount(
                     calculateSize(files[i]),
                     calculateCount(files[i]));
-            info.setType(typeResolver.getType(files[i]));
+            info.setType(TYPE_RESOLVER.getType(files[i]));
             infoList.add(info);
         }
         return infoList;
