@@ -1,7 +1,5 @@
 package ru.develonica.view;
 
-import ru.develonica.model.Message;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
@@ -11,17 +9,43 @@ import java.io.IOException;
 public final class ErrorView {
 
     /**
+     * Internal application error.
+     */
+    private static final String INTERNAL_ERROR = "Internal error.";
+
+    /**
+     * Input/output error.
+     */
+    private static final String IO_ERROR = "Input/output error. Perhaps the file does not exist or the path is incorrect.";
+
+    /**
+     * Out of bounds error.
+     * For example, when user enters -1 as input.
+     */
+    private static final String OUT_OF_BOUNDS = "Incorrect number. Please, check your input.";
+
+    /**
+     * Illegal argument error.
+     */
+    private static final String ILLEGAL_ARGUMENT = "Incorrect input. Please, try again.";
+
+    /**
+     * File not found error.
+     */
+    private static final String FILE_NOT_FOUND = "File not found.";
+
+    /**
      * Method outputs error message by resolving exception.
      *
      * @param throwable Exception input.
      */
     public void proceed(Throwable throwable) {
         switch (throwable) {
-            case IndexOutOfBoundsException outOfBounds -> System.err.println(Message.OUT_OF_BOUNDS.getText());
-            case FileNotFoundException fileNotFound -> System.err.println(Message.FILE_NOT_FOUND.getText());
-            case IllegalArgumentException illegalArg -> System.err.println(Message.ILLEGAL_ARGUMENT.getText());
-            case IOException io -> System.err.println(Message.IO_ERROR.getText());
-            default -> System.err.println(Message.INTERNAL_ERROR.getText());
+            case IndexOutOfBoundsException outOfBounds -> System.err.println(OUT_OF_BOUNDS);
+            case FileNotFoundException fileNotFound -> System.err.println(FILE_NOT_FOUND);
+            case IllegalArgumentException illegalArg -> System.err.println(ILLEGAL_ARGUMENT);
+            case IOException io -> System.err.println(IO_ERROR);
+            default -> System.err.println(INTERNAL_ERROR);
         }
     }
 }
