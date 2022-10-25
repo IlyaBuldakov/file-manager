@@ -1,6 +1,6 @@
 package ru.develonica.util;
 
-import ru.develonica.model.file.FileTree;
+import ru.develonica.model.FileTree;
 import ru.develonica.model.MenuButtons;
 
 /**

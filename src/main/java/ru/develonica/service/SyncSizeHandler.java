@@ -1,6 +1,7 @@
 package ru.develonica.service;
 
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 
 /**
@@ -9,7 +10,7 @@ import java.nio.file.Files;
 public class SyncSizeHandler implements SizeHandler {
 
     @Override
-    public long activate(File destination) throws Exception {
+    public long activate(File destination) throws IOException {
         File[] files = destination.listFiles();
         long filesSize = 0L;
         if (files != null && files.length != 0) {

@@ -8,7 +8,6 @@ import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 
 /**
@@ -25,7 +24,7 @@ public class ThreadPoolSizeHandler implements SizeHandler {
     }
 
     @Override
-    public long activate(File destination) throws ExecutionException, InterruptedException, IOException {
+    public long activate(File destination) throws IOException {
         File[] files = destination.listFiles();
         long filesSize = 0L;
         if (files != null && files.length != 0) {
@@ -37,8 +36,7 @@ public class ThreadPoolSizeHandler implements SizeHandler {
                     cfList.add(CompletableFuture.supplyAsync(() -> {
                         try {
                             return activate(file);
-                        } catch (ExecutionException
-                                 | InterruptedException | IOException exception) {
+                        } catch (IOException exception) {
                             this.errorView.proceed(exception);
                             return 0L;
                         }

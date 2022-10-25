@@ -1,6 +1,7 @@
 package ru.develonica.service;
 
 import java.io.File;
+import java.io.IOException;
 
 /**
  * Interface describing the size handler.
@@ -12,7 +13,7 @@ public interface SizeHandler {
      *
      * @param destination Destination to be processed.
      * @return Size value.
-     * @throws Exception Exception.
+     * @throws IOException Exception.
      */
-    long activate(File destination) throws Exception;
+    long activate(File destination) throws IOException;
 }

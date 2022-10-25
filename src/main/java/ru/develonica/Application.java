@@ -2,12 +2,11 @@ package ru.develonica;
 
 import ru.develonica.controller.InputController;
 import ru.develonica.controller.MenuController;
-import ru.develonica.model.file.FileOperationsHandler;
-import ru.develonica.model.file.FileTree;
+import ru.develonica.model.FileTree;
 import ru.develonica.model.ThreadPoolHolder;
-import ru.develonica.model.file.FileTreeBuilder;
 import ru.develonica.view.*;
 
+import java.io.IOException;
 import java.util.concurrent.Executors;
 
 /**
@@ -28,20 +27,22 @@ public class Application {
         FileTreeView fileTreeView = new FileTreeView();
         GreetingView greetingView = new GreetingView();
         MenuView menuView = new MenuView();
-        ProgressBarView progressBarView = new ProgressBarView();
         // -----------------
 
         // ------Models------
-        FileOperationsHandler fileOperationsHandler = new FileOperationsHandler(errorView);
-        FileTreeBuilder fileTreeBuilder = new FileTreeBuilder(progressBarView, fileOperationsHandler);
-        FileTree startFileTree = fileTreeBuilder.build(HOME_PATH);
+        FileTree startFileTree;
+        try {
+            startFileTree = FileTree.build(HOME_PATH);
+        } catch (IOException exception) {
+            throw new RuntimeException();
+        }
         // ------------------
 
         // ------Controllers------
-        MenuController menuController = new MenuController(menuOperationsView, errorView, fileTreeBuilder);
+        MenuController menuController = new MenuController(menuOperationsView, errorView);
         InputController inputController = new InputController(
                 startFileTree, fileTreeView, greetingView,
-                menuView, errorView, menuController, fileOperationsHandler, fileTreeBuilder);
+                menuView, errorView, menuController);
         // ------------------------
         inputController.start();
     }
