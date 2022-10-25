@@ -1,5 +1,6 @@
-package ru.develonica.service;
+package ru.develonica.service.sizehandler.impl;
 
+import ru.develonica.service.sizehandler.SizeHandler;
 import ru.develonica.view.ErrorView;
 
 import java.io.File;
