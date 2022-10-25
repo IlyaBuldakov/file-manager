@@ -19,6 +19,8 @@ import java.nio.file.Path;
  */
 public class InputController {
 
+    private static final String HOME_PATH = System.getProperty("user.home");
+
     private static final String EXIT_VALUE = "exit";
 
     /**
@@ -36,9 +38,8 @@ public class InputController {
 
     private final MenuController menuController;
 
-    public InputController(FileTree fileTree, FileTreeView fileTreeView, GreetingView greetingView,
+    public InputController(FileTreeView fileTreeView, GreetingView greetingView,
                            MenuView menuView, ErrorView errorView, MenuController menuController) {
-        this.fileTree = fileTree;
         this.fileTreeView = fileTreeView;
         this.greetingView = greetingView;
         this.menuView = menuView;
@@ -51,6 +52,8 @@ public class InputController {
      */
     public void start() {
         try {
+            // Initializing start file tree. Throws IOException.
+            this.fileTree = FileTree.build(HOME_PATH);
             this.greetingView.greetingPage();
             refreshOutput();
             runLifecycle();

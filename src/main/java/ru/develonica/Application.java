@@ -2,14 +2,16 @@ package ru.develonica;
 
 import ru.develonica.controller.InputController;
 import ru.develonica.controller.MenuController;
-import ru.develonica.model.FileTree;
+import ru.develonica.model.SizeConverter;
 import ru.develonica.model.ThreadPoolHolder;
 import ru.develonica.model.operation.CreateOperation;
 import ru.develonica.model.operation.DeleteOperation;
-import ru.develonica.model.SizeConverter;
-import ru.develonica.view.*;
+import ru.develonica.view.ErrorView;
+import ru.develonica.view.FileTreeView;
+import ru.develonica.view.GreetingView;
+import ru.develonica.view.MenuOperationsView;
+import ru.develonica.view.MenuView;
 
-import java.io.IOException;
 import java.util.concurrent.Executors;
 
 /**
@@ -17,21 +19,12 @@ import java.util.concurrent.Executors;
  */
 public class Application {
 
-    private static final String HOME_PATH = System.getProperty("user.home");
-
     public static void main(String[] args) {
         if (args.length > 0 && args[0].equals("async")) {
             ThreadPoolHolder.setInstance(Executors.newCachedThreadPool());
         }
 
-
         // ------Models------
-        FileTree startFileTree;
-        try {
-            startFileTree = FileTree.build(HOME_PATH);
-        } catch (IOException exception) {
-            throw new RuntimeException();
-        }
         CreateOperation createOperation = new CreateOperation();
         DeleteOperation deleteOperation = new DeleteOperation();
         SizeConverter sizeConverter = new SizeConverter();
@@ -46,10 +39,10 @@ public class Application {
         // -----------------
 
         // ------Controllers------
-        MenuController menuController = new MenuController(menuOperationsView, errorView, deleteOperation, createOperation);
-        InputController inputController = new InputController(
-                startFileTree, fileTreeView, greetingView,
-                menuView, errorView, menuController);
+        MenuController menuController
+                = new MenuController(menuOperationsView, errorView, deleteOperation, createOperation);
+        InputController inputController
+                = new InputController(fileTreeView, greetingView, menuView, errorView, menuController);
         // ------------------------
         inputController.start();
     }
