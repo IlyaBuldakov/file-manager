@@ -37,10 +37,10 @@ public final class ErrorView {
     /**
      * Method outputs error message by resolving exception.
      *
-     * @param throwable Exception input.
+     * @param exception Exception input.
      */
-    public void proceed(Throwable throwable) {
-        switch (throwable) {
+    public void proceed(Exception exception) {
+        switch (exception) {
             case IndexOutOfBoundsException outOfBounds -> System.err.println(OUT_OF_BOUNDS);
             case FileNotFoundException fileNotFound -> System.err.println(FILE_NOT_FOUND);
             case IllegalArgumentException illegalArg -> System.err.println(ILLEGAL_ARGUMENT);
