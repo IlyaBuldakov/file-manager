@@ -25,7 +25,7 @@ public class ThreadPoolSizeHandler implements SizeHandler {
     }
 
     @Override
-    public long activate(File destination) throws IOException {
+    public long calculateDestinationSize(File destination) throws IOException {
         File[] files = destination.listFiles();
         long filesSize = 0L;
         if (files != null && files.length != 0) {
@@ -36,7 +36,7 @@ public class ThreadPoolSizeHandler implements SizeHandler {
                 } else {
                     cfList.add(CompletableFuture.supplyAsync(() -> {
                         try {
-                            return activate(file);
+                            return calculateDestinationSize(file);
                         } catch (IOException exception) {
                             this.errorView.proceed(exception);
                             return 0L;

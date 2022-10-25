@@ -15,5 +15,5 @@ public interface SizeHandler {
      * @return Size value.
      * @throws IOException Exception.
      */
-    long activate(File destination) throws IOException;
+    long calculateDestinationSize(File destination) throws IOException;
 }

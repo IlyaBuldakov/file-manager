@@ -12,7 +12,7 @@ import java.nio.file.Files;
 public class SyncSizeHandler implements SizeHandler {
 
     @Override
-    public long activate(File destination) throws IOException {
+    public long calculateDestinationSize(File destination) throws IOException {
         File[] files = destination.listFiles();
         long filesSize = 0L;
         if (files != null && files.length != 0) {
@@ -20,7 +20,7 @@ public class SyncSizeHandler implements SizeHandler {
                 if (file.isFile()) {
                     filesSize += Files.size(file.toPath());
                 } else {
-                    filesSize += activate(file);
+                    filesSize += calculateDestinationSize(file);
                 }
             }
         }

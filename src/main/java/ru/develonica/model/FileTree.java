@@ -114,7 +114,7 @@ public class FileTree {
      */
     private static long calculateSize(File file) throws IOException {
         if (file.isDirectory()) {
-            return SIZE_HANDLER.activate(file);
+            return SIZE_HANDLER.calculateDestinationSize(file);
         }
         return Files.size(file.toPath());
     }
