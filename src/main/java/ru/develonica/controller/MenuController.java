@@ -2,13 +2,14 @@ package ru.develonica.controller;
 
 import ru.develonica.model.FileTree;
 import ru.develonica.model.MenuButtons;
+import ru.develonica.model.operation.CreateOperation;
+import ru.develonica.model.operation.DeleteOperation;
 import ru.develonica.util.Validator;
 import ru.develonica.view.ErrorView;
 import ru.develonica.view.MenuOperationsView;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Scanner;
 
@@ -30,10 +31,16 @@ public class MenuController {
 
     private final ErrorView errorView;
 
+    private final DeleteOperation deleteOperation;
+
+    private final CreateOperation createOperation;
+
     public MenuController(MenuOperationsView menuOperationsView,
-                          ErrorView errorView) {
+                          ErrorView errorView, DeleteOperation deleteOperation, CreateOperation createOperation) {
         this.menuOperationsView = menuOperationsView;
         this.errorView = errorView;
+        this.deleteOperation = deleteOperation;
+        this.createOperation = createOperation;
     }
 
     /**
@@ -53,8 +60,7 @@ public class MenuController {
             if (upperCaseInput == CREATE_BUTTON) {
                 this.menuOperationsView.enterNameForNewObj();
                 String dirName = new Scanner(System.in).nextLine();
-                Path path = Path.of("%s/%s".formatted(tree.getTreePath().toString(), dirName));
-                Files.createDirectories(path);
+                this.createOperation.handle(tree, dirName);
                 this.menuOperationsView.createSuccess();
                 // Rebuild tree with new directory.
                 return FileTree.build(tree.getTreePath().toString());
@@ -63,8 +69,7 @@ public class MenuController {
                 this.menuOperationsView.enterIdToDelete();
                 int id = Integer.parseInt(new Scanner(System.in).nextLine());
                 if (Validator.isObjectIdValid(tree, id)) {
-                    Path pathToDelete = tree.getTree().get(id - 1).getPath();
-                    Files.delete(pathToDelete);
+                    this.deleteOperation.handle(tree, id);
                     this.menuOperationsView.deleteSuccess();
                     // Rebuild tree without deleted dir/file.
                     return FileTree.build(tree.getTreePath().toString());

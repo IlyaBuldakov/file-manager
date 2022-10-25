@@ -4,6 +4,8 @@ import ru.develonica.controller.InputController;
 import ru.develonica.controller.MenuController;
 import ru.develonica.model.FileTree;
 import ru.develonica.model.ThreadPoolHolder;
+import ru.develonica.model.operation.CreateOperation;
+import ru.develonica.model.operation.DeleteOperation;
 import ru.develonica.view.*;
 
 import java.io.IOException;
@@ -36,10 +38,12 @@ public class Application {
         } catch (IOException exception) {
             throw new RuntimeException();
         }
+        CreateOperation createOperation = new CreateOperation();
+        DeleteOperation deleteOperation = new DeleteOperation();
         // ------------------
 
         // ------Controllers------
-        MenuController menuController = new MenuController(menuOperationsView, errorView);
+        MenuController menuController = new MenuController(menuOperationsView, errorView, deleteOperation, createOperation);
         InputController inputController = new InputController(
                 startFileTree, fileTreeView, greetingView,
                 menuView, errorView, menuController);
