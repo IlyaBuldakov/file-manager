@@ -14,8 +14,11 @@ public class TypeResolver {
      * @return {@link Type Type}.
      */
     public Type getType(File file) throws IOException {
+        if (file.isDirectory()) {
+            return Type.DIR;
+        }
         String type = Files.probeContentType(file.toPath());
-        return type == null ? Type.DIR : parseType(type);
+        return type == null ? Type.OTHER : parseType(type);
     }
 
     /**
