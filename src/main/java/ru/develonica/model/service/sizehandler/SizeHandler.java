@@ -1,4 +1,4 @@
-package ru.develonica.service.sizehandler;
+package ru.develonica.model.service.sizehandler;
 
 import java.io.File;
 import java.io.IOException;

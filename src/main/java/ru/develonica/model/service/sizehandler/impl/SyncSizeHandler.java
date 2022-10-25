@@ -1,6 +1,6 @@
-package ru.develonica.service.sizehandler.impl;
+package ru.develonica.model.service.sizehandler.impl;
 
-import ru.develonica.service.sizehandler.SizeHandler;
+import ru.develonica.model.service.sizehandler.SizeHandler;
 
 import java.io.File;
 import java.io.IOException;

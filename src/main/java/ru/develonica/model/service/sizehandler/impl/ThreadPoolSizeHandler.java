@@ -1,7 +1,6 @@
-package ru.develonica.service.sizehandler.impl;
+package ru.develonica.model.service.sizehandler.impl;
 
-import ru.develonica.service.sizehandler.SizeHandler;
-import ru.develonica.view.ErrorView;
+import ru.develonica.model.service.sizehandler.SizeHandler;
 
 import java.io.File;
 import java.io.IOException;
@@ -9,6 +8,7 @@ import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionException;
 import java.util.concurrent.ExecutorService;
 
 /**
@@ -17,8 +17,6 @@ import java.util.concurrent.ExecutorService;
 public class ThreadPoolSizeHandler implements SizeHandler {
 
     private final ExecutorService threadPool;
-
-    private final ErrorView errorView = new ErrorView();
 
     public ThreadPoolSizeHandler(ExecutorService threadPool) {
         this.threadPool = threadPool;
@@ -38,8 +36,7 @@ public class ThreadPoolSizeHandler implements SizeHandler {
                         try {
                             return calculateDestinationSize(file);
                         } catch (IOException exception) {
-                            this.errorView.proceed(exception);
-                            return 0L;
+                            throw new CompletionException(exception);
                         }
                     }, threadPool));
                 }

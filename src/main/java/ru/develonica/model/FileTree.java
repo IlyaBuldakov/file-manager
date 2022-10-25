@@ -1,8 +1,8 @@
 package ru.develonica.model;
 
-import ru.develonica.service.sizehandler.SizeHandler;
-import ru.develonica.service.sizehandler.impl.SyncSizeHandler;
-import ru.develonica.service.sizehandler.impl.ThreadPoolSizeHandler;
+import ru.develonica.model.service.sizehandler.SizeHandler;
+import ru.develonica.model.service.sizehandler.impl.SyncSizeHandler;
+import ru.develonica.model.service.sizehandler.impl.ThreadPoolSizeHandler;
 
 import java.awt.Desktop;
 import java.io.File;
