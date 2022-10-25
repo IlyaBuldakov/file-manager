@@ -57,11 +57,6 @@ public class FileTree {
     private final long totalSize;
 
     /**
-     * Total count of all objects.
-     */
-    private int totalCount;
-
-    /**
      * Method that opens file.
      *
      * @param file File to be opened.
@@ -153,7 +148,6 @@ public class FileTree {
         this.treePath = treePath;
         this.headName = headName;
         this.totalSize = infoList.stream().map(Information::getSize).reduce(0L, Long::sum);
-        this.totalCount = infoList.size();
     }
 
     /**
@@ -183,6 +177,6 @@ public class FileTree {
     }
 
     public int getTotalCount() {
-        return totalCount;
+        return tree.size();
     }
 }
