@@ -16,7 +16,7 @@ public class Information {
     /**
      * Object type (e.g., dir or file).
      */
-    private final Type type;
+    private Type type;
 
     /**
      * Size of object.
@@ -41,14 +41,18 @@ public class Information {
     /**
      * Creates {@link Information information instance} from file.
      *
-     * @param file File.
+     * @param file   File.
      * @param number Sequence number (in tree output).
      */
     public Information(File file, int number) {
         this.objName = file.getName();
-        this.type = Type.getType(file);
+        this.type = Type.OTHER;
         this.path = file.toPath();
         this.number = number;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
     }
 
     public void setSizeAndCount(long size, int count) {

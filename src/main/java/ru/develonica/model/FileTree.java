@@ -100,6 +100,7 @@ public class FileTree {
             info.setSizeAndCount(
                     calculateSize(files[i]),
                     calculateCount(files[i]));
+            info.setType(Type.getType(files[i]));
             infoList.add(info);
         }
         return infoList;
