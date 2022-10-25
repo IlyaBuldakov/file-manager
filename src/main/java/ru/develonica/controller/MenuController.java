@@ -1,7 +1,7 @@
 package ru.develonica.controller;
 
 import ru.develonica.model.FileTree;
-import ru.develonica.model.MenuButtons;
+import ru.develonica.model.MenuButton;
 import ru.develonica.model.operation.CreateOperation;
 import ru.develonica.model.operation.DeleteOperation;
 import ru.develonica.util.Validator;
@@ -18,12 +18,6 @@ import java.util.Scanner;
  * user interaction using the menu.
  */
 public class MenuController {
-
-    private static final char BACK_BUTTON = MenuButtons.BACK_BUTTON.getSymbol();
-
-    private static final char CREATE_BUTTON = MenuButtons.CREATE_BUTTON.getSymbol();
-
-    private static final char DELETE_BUTTON = MenuButtons.DELETE_BUTTON.getSymbol();
 
     private static final String HOME_PATH = System.getProperty("user.home");
 
@@ -52,29 +46,32 @@ public class MenuController {
      */
     public FileTree handleMenu(FileTree tree, char inputButton) throws IOException {
         try {
-            Path parent = tree.getTreePath().getParent();
             final char upperCaseInput = Character.toUpperCase(inputButton);
-            if (upperCaseInput == BACK_BUTTON) {
-                return FileTree.build(parent.toString());
-            }
-            if (upperCaseInput == CREATE_BUTTON) {
-                this.menuOperationsView.enterNameForNewObj();
-                String dirName = new Scanner(System.in).nextLine();
-                this.createOperation.handle(tree, dirName);
-                this.menuOperationsView.createSuccess();
-                // Rebuild tree with new directory.
-                return FileTree.build(tree.getTreePath().toString());
-            }
-            if (upperCaseInput == DELETE_BUTTON) {
-                this.menuOperationsView.enterIdToDelete();
-                int id = Integer.parseInt(new Scanner(System.in).nextLine());
-                if (Validator.isObjectIdValid(tree, id)) {
-                    this.deleteOperation.handle(tree, id);
-                    this.menuOperationsView.deleteSuccess();
-                    // Rebuild tree without deleted dir/file.
+            MenuButton button = MenuButton.valueOf(upperCaseInput);
+            Path parent = tree.getTreePath().getParent();
+            switch (button) {
+                case BACK_BUTTON -> {
+                    return FileTree.build(parent.toString());
+                }
+                case CREATE_BUTTON -> {
+                    this.menuOperationsView.enterNameForNewObj();
+                    String dirName = new Scanner(System.in).nextLine();
+                    this.createOperation.handle(tree, dirName);
+                    this.menuOperationsView.createSuccess();
+                    // Rebuild tree with new directory.
                     return FileTree.build(tree.getTreePath().toString());
-                } else {
-                    this.errorView.proceed(new FileNotFoundException());
+                }
+                case DELETE_BUTTON -> {
+                    this.menuOperationsView.enterIdToDelete();
+                    int id = Integer.parseInt(new Scanner(System.in).nextLine());
+                    if (Validator.isObjectIdValid(tree, id)) {
+                        this.deleteOperation.handle(tree, id);
+                        this.menuOperationsView.deleteSuccess();
+                        // Rebuild tree without deleted dir/file.
+                        return FileTree.build(tree.getTreePath().toString());
+                    } else {
+                        this.errorView.proceed(new FileNotFoundException());
+                    }
                 }
             }
             return tree;

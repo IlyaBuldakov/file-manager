@@ -1,7 +1,7 @@
 package ru.develonica.util;
 
 import ru.develonica.model.FileTree;
-import ru.develonica.model.MenuButtons;
+import ru.develonica.model.MenuButton;
 
 /**
  * Class that validates data.
@@ -29,7 +29,7 @@ public final class Validator {
     public static boolean isMenuButton(String input) {
         return input.length() == 1
                 && (Character.isAlphabetic(input.charAt(0))
-                || input.charAt(0) == MenuButtons.CREATE_BUTTON.getSymbol()
-                || input.charAt(0) == MenuButtons.DELETE_BUTTON.getSymbol());
+                || input.charAt(0) == MenuButton.CREATE_BUTTON.getSymbol()
+                || input.charAt(0) == MenuButton.DELETE_BUTTON.getSymbol());
     }
 }

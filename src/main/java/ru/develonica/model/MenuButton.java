@@ -3,7 +3,7 @@ package ru.develonica.model;
 /**
  * Enum-representations of menu buttons.
  */
-public enum MenuButtons {
+public enum MenuButton {
 
     /**
      * Back (from file tree) menu button representation.
@@ -22,8 +22,17 @@ public enum MenuButtons {
 
     private final char symbol;
 
-    MenuButtons(char symbol) {
+    MenuButton(char symbol) {
         this.symbol = symbol;
+    }
+
+    public static MenuButton valueOf(char value) {
+        return switch (value) {
+            case 'B' -> BACK_BUTTON;
+            case '+' -> CREATE_BUTTON;
+            case '-' -> DELETE_BUTTON;
+            default -> null;
+        };
     }
 
     public char getSymbol() {
