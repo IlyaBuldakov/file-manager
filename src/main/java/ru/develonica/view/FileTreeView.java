@@ -40,8 +40,13 @@ public final class FileTreeView {
         }
 
         System.out.printf(FILE_TREE_ENDING, fileTree.getHeadName());
-        System.out.printf("Total size: %s \n", sizeConverter.convert(fileTree.getTotalSize()));
-        System.out.printf("Total count: %s \n", fileTree.getTotalCount());
-        System.out.println("Enter path/number of directory or use hotkeys.");
+        String totalBlock = """
+                Total size: %s
+                Total count: %s
+                Enter path/number of directory or use hotkeys.
+                """.formatted(
+                sizeConverter.convert(fileTree.getTotalSize()),
+                fileTree.getTotalCount());
+        System.out.println(totalBlock);
     }
 }
