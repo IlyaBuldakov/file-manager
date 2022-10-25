@@ -6,6 +6,7 @@ import ru.develonica.model.FileTree;
 import ru.develonica.model.ThreadPoolHolder;
 import ru.develonica.model.operation.CreateOperation;
 import ru.develonica.model.operation.DeleteOperation;
+import ru.develonica.model.SizeConverter;
 import ru.develonica.view.*;
 
 import java.io.IOException;
@@ -23,13 +24,6 @@ public class Application {
             ThreadPoolHolder.setInstance(Executors.newCachedThreadPool());
         }
 
-        // ------Views------
-        ErrorView errorView = new ErrorView();
-        MenuOperationsView menuOperationsView = new MenuOperationsView();
-        FileTreeView fileTreeView = new FileTreeView();
-        GreetingView greetingView = new GreetingView();
-        MenuView menuView = new MenuView();
-        // -----------------
 
         // ------Models------
         FileTree startFileTree;
@@ -40,7 +34,16 @@ public class Application {
         }
         CreateOperation createOperation = new CreateOperation();
         DeleteOperation deleteOperation = new DeleteOperation();
+        SizeConverter sizeConverter = new SizeConverter();
         // ------------------
+
+        // ------Views------
+        ErrorView errorView = new ErrorView();
+        MenuOperationsView menuOperationsView = new MenuOperationsView();
+        FileTreeView fileTreeView = new FileTreeView(sizeConverter);
+        GreetingView greetingView = new GreetingView();
+        MenuView menuView = new MenuView();
+        // -----------------
 
         // ------Controllers------
         MenuController menuController = new MenuController(menuOperationsView, errorView, deleteOperation, createOperation);

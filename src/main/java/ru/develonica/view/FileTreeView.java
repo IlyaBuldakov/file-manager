@@ -3,7 +3,7 @@ package ru.develonica.view;
 import ru.develonica.model.FileTree;
 import ru.develonica.model.Information;
 import ru.develonica.model.Type;
-import ru.develonica.util.SizeConverter;
+import ru.develonica.model.SizeConverter;
 
 import java.util.List;
 
@@ -13,6 +13,12 @@ import java.util.List;
 public final class FileTreeView {
 
     private static final String FILE_TREE_ENDING = "=== File tree %s === \n";
+
+    private final SizeConverter sizeConverter;
+
+    public FileTreeView(SizeConverter sizeConverter) {
+        this.sizeConverter = sizeConverter;
+    }
 
     /**
      * Method outputs file tree.
@@ -25,7 +31,7 @@ public final class FileTreeView {
             int number = info.getNumber();
             String objName = info.getObjName();
             Type type = info.getType();
-            String size = SizeConverter.convert(info.getSize());
+            String size = sizeConverter.convert(info.getSize());
             int count = info.getCount();
             String output = String.format(
                     "%d | Name: %s \\ Type: %s \\ Size: %s \\ Count: %s",
@@ -34,7 +40,7 @@ public final class FileTreeView {
         }
 
         System.out.printf(FILE_TREE_ENDING, fileTree.getHeadName());
-        System.out.printf("Total size: %s \n", SizeConverter.convert(fileTree.getTotalSize()));
+        System.out.printf("Total size: %s \n", sizeConverter.convert(fileTree.getTotalSize()));
         System.out.printf("Total count: %s \n", fileTree.getTotalCount());
         System.out.println("Enter path/number of directory or use hotkeys.");
     }

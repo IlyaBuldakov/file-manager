@@ -1,4 +1,4 @@
-package ru.develonica.util;
+package ru.develonica.model;
 
 /**
  * Converter to KB/MB/GB/TB (or BYTES, if value less than 1024).
@@ -15,7 +15,7 @@ public final class SizeConverter {
      * @param input Value to convert.
      * @return Converted string.
      */
-    public static String convert(long input) {
+    public String convert(long input) {
         // Division by 1024 counter
         int counter = 0;
         // Division step. Examples with input 2048:
