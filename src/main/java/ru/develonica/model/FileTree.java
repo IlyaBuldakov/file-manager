@@ -4,7 +4,7 @@ import ru.develonica.model.service.sizehandler.SizeHandler;
 import ru.develonica.model.service.sizehandler.impl.SyncSizeHandler;
 import ru.develonica.model.service.sizehandler.impl.ThreadPoolSizeHandler;
 
-import java.awt.Desktop;
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -12,6 +12,7 @@ import java.nio.file.Path;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ExecutorService;
 
@@ -81,31 +82,39 @@ public class FileTree {
         if (fileDest.exists()) {
             File[] files = fileDest.listFiles();
             if (files != null) {
-                List<Information> infoList = createInfoList(files);
-                return new FileTree(infoList, pathDest, fileDest.getName());
+                Map.Entry<LinkedList<Information>, Long> listWithSize = createListWithSize(files);
+                List<Information> infoList = listWithSize.getKey();
+                return new FileTree(infoList, pathDest, fileDest.getName(), listWithSize.getValue());
             }
             return new FileTree(fileDest.getName(), pathDest);
         }
         return build(HOME_PATH);
     }
 
+
     /**
      * Method for creating a list of {@link Information information}.
      *
      * @param files File array.
-     * @return List of {@link Information information}.
+     * @return Tuple of info list (objects) and
+     * total size (size of all objects in list).
+     * @throws IOException Exception.
      */
-    private static LinkedList<Information> createInfoList(File[] files) throws IOException {
+    private static Map.Entry<LinkedList<Information>, Long> createListWithSize(File[] files)
+            throws IOException {
         LinkedList<Information> infoList = new LinkedList<>();
+        long totalSize = 0;
         for (int i = 0; i < files.length; i++) {
             Information info = new Information(files[i], i + 1);
+            long size = calculateSize(files[i]);
+            totalSize += size;
             info.setSizeAndCount(
-                    calculateSize(files[i]),
+                    size,
                     calculateCount(files[i]));
             info.setType(TYPE_RESOLVER.getType(files[i]));
             infoList.add(info);
         }
-        return infoList;
+        return Map.entry(infoList, totalSize);
     }
 
     /**
@@ -146,11 +155,11 @@ public class FileTree {
      * @param treePath Path to file tree.
      * @param headName Name of file tree (directory).
      */
-    private FileTree(List<Information> infoList, Path treePath, String headName) {
+    private FileTree(List<Information> infoList, Path treePath, String headName, long totalSize) {
         this.tree = infoList;
         this.treePath = treePath;
         this.headName = headName;
-        this.totalSize = infoList.stream().map(Information::getSize).reduce(0L, Long::sum);
+        this.totalSize = totalSize;
     }
 
     /**
