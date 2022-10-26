@@ -1,8 +1,8 @@
 package ru.develonica.controller;
 
-import ru.develonica.model.Information;
+import ru.develonica.model.service.info.Information;
 import ru.develonica.model.Type;
-import ru.develonica.model.FileTree;
+import ru.develonica.model.service.info.FileTree;
 import ru.develonica.util.Validator;
 import ru.develonica.view.ErrorView;
 import ru.develonica.view.FileTreeView;

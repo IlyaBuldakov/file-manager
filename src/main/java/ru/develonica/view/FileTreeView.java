@@ -1,7 +1,7 @@
 package ru.develonica.view;
 
-import ru.develonica.model.FileTree;
-import ru.develonica.model.Information;
+import ru.develonica.model.service.info.FileTree;
+import ru.develonica.model.service.info.Information;
 import ru.develonica.model.Type;
 import ru.develonica.model.SizeConverter;
 

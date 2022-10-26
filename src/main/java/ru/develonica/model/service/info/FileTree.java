@@ -1,5 +1,7 @@
-package ru.develonica.model;
+package ru.develonica.model.service.info;
 
+import ru.develonica.model.ThreadPoolHolder;
+import ru.develonica.model.TypeResolver;
 import ru.develonica.model.service.sizehandler.SizeHandler;
 import ru.develonica.model.service.sizehandler.impl.SyncSizeHandler;
 import ru.develonica.model.service.sizehandler.impl.ThreadPoolSizeHandler;
@@ -84,7 +86,8 @@ public class FileTree {
             if (files != null) {
                 Map.Entry<LinkedList<Information>, Long> listWithSize = createListWithSize(files);
                 List<Information> infoList = listWithSize.getKey();
-                return new FileTree(infoList, pathDest, fileDest.getName(), listWithSize.getValue());
+                long totalSize = listWithSize.getValue();
+                return new FileTree(infoList, pathDest, fileDest.getName(), totalSize);
             }
             return new FileTree(fileDest.getName(), pathDest);
         }

@@ -1,6 +1,6 @@
 package ru.develonica.model.operation;
 
-import ru.develonica.model.FileTree;
+import ru.develonica.model.service.info.FileTree;
 
 import java.io.IOException;
 import java.nio.file.Files;

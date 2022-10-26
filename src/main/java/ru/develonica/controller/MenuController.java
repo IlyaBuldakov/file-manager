@@ -1,6 +1,6 @@
 package ru.develonica.controller;
 
-import ru.develonica.model.FileTree;
+import ru.develonica.model.service.info.FileTree;
 import ru.develonica.model.MenuButton;
 import ru.develonica.model.operation.CreateOperation;
 import ru.develonica.model.operation.DeleteOperation;

@@ -1,4 +1,6 @@
-package ru.develonica.model;
+package ru.develonica.model.service.info;
+
+import ru.develonica.model.Type;
 
 import java.io.File;
 import java.nio.file.Path;
@@ -44,7 +46,7 @@ public class Information {
      * @param file   File.
      * @param number Sequence number (in tree output).
      */
-    public Information(File file, int number) {
+    Information(File file, int number) {
         this.objName = file.getName();
         this.type = Type.OTHER;
         this.path = file.toPath();
