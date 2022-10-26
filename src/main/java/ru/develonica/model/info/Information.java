@@ -1,4 +1,4 @@
-package ru.develonica.model.service.info;
+package ru.develonica.model.info;
 
 import ru.develonica.model.type.Type;
 

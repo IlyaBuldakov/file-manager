@@ -2,10 +2,10 @@ package ru.develonica;
 
 import ru.develonica.controller.InputController;
 import ru.develonica.controller.MenuController;
-import ru.develonica.model.SizeConverter;
+import ru.develonica.model.service.SizeConverter;
 import ru.develonica.model.ThreadPoolHolder;
-import ru.develonica.model.operation.CreateOperation;
-import ru.develonica.model.operation.DeleteOperation;
+import ru.develonica.model.service.operation.CreateOperation;
+import ru.develonica.model.service.operation.DeleteOperation;
 import ru.develonica.view.ErrorView;
 import ru.develonica.view.FileTreeView;
 import ru.develonica.view.GreetingView;

@@ -1,9 +1,9 @@
 package ru.develonica.controller;
 
-import ru.develonica.model.service.info.FileTree;
+import ru.develonica.model.info.FileTree;
 import ru.develonica.model.MenuButton;
-import ru.develonica.model.operation.CreateOperation;
-import ru.develonica.model.operation.DeleteOperation;
+import ru.develonica.model.service.operation.CreateOperation;
+import ru.develonica.model.service.operation.DeleteOperation;
 import ru.develonica.util.Validator;
 import ru.develonica.view.ErrorView;
 import ru.develonica.view.MenuOperationsView;
