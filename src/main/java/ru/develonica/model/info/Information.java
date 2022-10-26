@@ -16,6 +16,16 @@ public class Information {
     private final String objName;
 
     /**
+     * Object path.
+     */
+    private final Path path;
+
+    /**
+     * Sequence number in list.
+     */
+    private final int number;
+
+    /**
      * Object type (e.g., dir or file).
      */
     private Type type;
@@ -31,16 +41,6 @@ public class Information {
     private int count;
 
     /**
-     * Object path.
-     */
-    private final Path path;
-
-    /**
-     * Sequence number in list.
-     */
-    private final int number;
-
-    /**
      * Creates {@link Information information instance} from file.
      *
      * @param file   File.
@@ -48,9 +48,9 @@ public class Information {
      */
     Information(File file, int number) {
         this.objName = file.getName();
-        this.type = Type.OTHER;
         this.path = file.toPath();
         this.number = number;
+        this.type = Type.OTHER;
     }
 
     public void setType(Type type) {

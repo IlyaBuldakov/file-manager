@@ -5,7 +5,6 @@ import java.util.concurrent.ExecutorService;
 
 /**
  * Thread pool holder class.
- *
  * Depending on the run parameters, it stores the
  * specified thread pool, or an empty {@link Optional}.
  */
@@ -13,8 +12,7 @@ public class ThreadPoolHolder {
 
     private static ExecutorService THREAD_POOL;
 
-    private ThreadPoolHolder() {
-    }
+    private ThreadPoolHolder() {}
 
     public static void setInstance(ExecutorService executorService) {
         THREAD_POOL = executorService;

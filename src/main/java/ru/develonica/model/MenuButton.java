@@ -26,6 +26,12 @@ public enum MenuButton {
         this.symbol = symbol;
     }
 
+    /**
+     * Method returns enum instance or null.
+     *
+     * @param value Character.
+     * @return Enum instance.
+     */
     public static MenuButton valueOf(char value) {
         return switch (value) {
             case 'B' -> BACK_BUTTON;
