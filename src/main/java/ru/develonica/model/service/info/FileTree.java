@@ -1,7 +1,7 @@
 package ru.develonica.model.service.info;
 
 import ru.develonica.model.ThreadPoolHolder;
-import ru.develonica.model.TypeResolver;
+import ru.develonica.model.type.TypeResolver;
 import ru.develonica.model.service.sizehandler.SizeHandler;
 import ru.develonica.model.service.sizehandler.impl.SyncSizeHandler;
 import ru.develonica.model.service.sizehandler.impl.ThreadPoolSizeHandler;

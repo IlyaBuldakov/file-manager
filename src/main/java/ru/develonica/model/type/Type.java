@@ -1,4 +1,4 @@
-package ru.develonica.model;
+package ru.develonica.model.type;
 
 /**
  * Type of object (e.g., picture, video or dir).

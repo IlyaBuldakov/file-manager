@@ -1,4 +1,4 @@
-package ru.develonica.model;
+package ru.develonica.model.type;
 
 import java.io.File;
 import java.io.IOException;

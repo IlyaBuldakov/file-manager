@@ -1,6 +1,6 @@
 package ru.develonica.model.service.info;
 
-import ru.develonica.model.Type;
+import ru.develonica.model.type.Type;
 
 import java.io.File;
 import java.nio.file.Path;
