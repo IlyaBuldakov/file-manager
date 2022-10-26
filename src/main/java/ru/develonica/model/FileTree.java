@@ -4,7 +4,7 @@ import ru.develonica.model.service.sizehandler.SizeHandler;
 import ru.develonica.model.service.sizehandler.impl.SyncSizeHandler;
 import ru.develonica.model.service.sizehandler.impl.ThreadPoolSizeHandler;
 
-import java.awt.*;
+import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -91,7 +91,6 @@ public class FileTree {
         return build(HOME_PATH);
     }
 
-
     /**
      * Method for creating a list of {@link Information information}.
      *
@@ -105,16 +104,32 @@ public class FileTree {
         LinkedList<Information> infoList = new LinkedList<>();
         long totalSize = 0;
         for (int i = 0; i < files.length; i++) {
-            Information info = new Information(files[i], i + 1);
-            long size = calculateSize(files[i]);
+            Map.Entry<Information, Long> infoWithSize = generateInfoWithSize(files[i], i + 1);
+            Information info = infoWithSize.getKey();
+            long size = infoWithSize.getValue();
+            int count = calculateCount(files[i]);
             totalSize += size;
-            info.setSizeAndCount(
-                    size,
-                    calculateCount(files[i]));
+            info.setSizeAndCount(size, count);
             info.setType(TYPE_RESOLVER.getType(files[i]));
             infoList.add(info);
         }
         return Map.entry(infoList, totalSize);
+    }
+
+    /**
+     * Methods that generate {@link Information} object
+     * and size of this object.
+     *
+     * @param file           File that used for create
+     *                       {@link Information} object and calculate it's size.
+     * @param sequenceNumber Sequence number (in list without 0).
+     * @return Pair of {@link Information} object and it's size.
+     * @throws IOException Exception.
+     */
+    private static Map.Entry<Information, Long> generateInfoWithSize(File file, int sequenceNumber)
+            throws IOException {
+        return Map.entry(new Information(file, sequenceNumber),
+                calculateSize(file));
     }
 
     /**
